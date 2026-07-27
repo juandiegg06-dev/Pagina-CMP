@@ -1,0 +1,40 @@
+[27-Jul-2026 08:52:10 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:52:34 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:52:35 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:52:39 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:53:26 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:53:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:53:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:53:43 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:54:51 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
+[27-Jul-2026 08:54:53 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/coomulpi/public_html/ejecutar_git.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/coomulpi/public_html/ejecutar_git.php on line 16
