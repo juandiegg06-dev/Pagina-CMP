@@ -209,13 +209,13 @@ def generate_menu_html(prefix, current_path, is_mobile=False):
         <li><a href="{prefix}" class="mobile-menu-item-link">Inicio</a></li>
         <li><a href="{prefix}about-us/company/" class="mobile-menu-item-link">Quiénes Somos</a></li>
         <li>
-            <a href="{prefix}e-d-s-vinculadas/" class="mobile-menu-item-link">E.D.S. Vinculadas</a>
+            <a href="{prefix}estaciones/e-d-s-vinculadas/" class="mobile-menu-item-link">E.D.S. Vinculadas</a>
             <ul class="mobile-submenu-items">
-                <li><a href="{prefix}e-d-s/" class="mobile-submenu-item-link">E.D.S Metropolitana</a></li>
-                <li><a href="{prefix}mas-e-d-s/" class="mobile-submenu-item-link">E.D.S Norte</a></li>
-                <li><a href="{prefix}oriental/" class="mobile-submenu-item-link">E.D.S SurOriental</a></li>
-                <li><a href="{prefix}pamplona/" class="mobile-submenu-item-link">E.D.S Sur Occidental</a></li>
-                <li><a href="{prefix}occidental/" class="mobile-submenu-item-link">E.D.S Occidental</a></li>
+                <li><a href="{prefix}estaciones/e-d-s/" class="mobile-submenu-item-link">E.D.S Metropolitana</a></li>
+                <li><a href="{prefix}estaciones/mas-e-d-s/" class="mobile-submenu-item-link">E.D.S Norte</a></li>
+                <li><a href="{prefix}estaciones/oriental/" class="mobile-submenu-item-link">E.D.S SurOriental</a></li>
+                <li><a href="{prefix}estaciones/pamplona/" class="mobile-submenu-item-link">E.D.S Sur Occidental</a></li>
+                <li><a href="{prefix}estaciones/occidental/" class="mobile-submenu-item-link">E.D.S Occidental</a></li>
             </ul>
         </li>
         <li><a href="{prefix}projects/" class="mobile-menu-item-link">Responsabilidad Social</a></li>
@@ -240,49 +240,49 @@ def generate_menu_html(prefix, current_path, is_mobile=False):
         return f"""
         <li class="menu-item {active_class('/')}"><a href="{prefix}" class="menu-item-link">Inicio</a></li>
         <li class="menu-item {active_class('/about-us/')}"><a href="{prefix}about-us/company/" class="menu-item-link">Quiénes Somos</a></li>
-        <li class="menu-item menu-item-has-dropdown {active_class('/e-d-s-vinculadas') or active_class('/e-d-s/') or active_class('/occidental/') or active_class('/oriental/') or active_class('/mas-e-d-s/')}">
-            <a href="{prefix}e-d-s-vinculadas/" class="menu-item-link">E.D.S. Vinculadas <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+        <li class="menu-item menu-item-has-dropdown {active_class('/estaciones/e-d-s-vinculadas/') or active_class('/estaciones/e-d-s/') or active_class('/estaciones/occidental/') or active_class('/estaciones/oriental/') or active_class('/estaciones/mas-e-d-s/')}">
+            <a href="{prefix}estaciones/e-d-s-vinculadas/" class="menu-item-link">E.D.S. Vinculadas <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
             <ul class="menu-dropdown">
                 <li class="dropdown-submenu">
-                    <a href="{prefix}e-d-s/" class="dropdown-item-link">E.D.S Metropolitana <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
+                    <a href="{prefix}estaciones/e-d-s/" class="dropdown-item-link">E.D.S Metropolitana <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
                     <ul class="dropdown-submenu-menu">
-                        <li><a href="{prefix}san-cayetano/" class="dropdown-item-link">San Cayetano</a></li>
-                        <li><a href="{prefix}cucuta-2/" class="dropdown-item-link">Cúcuta</a></li>
-                        <li><a href="{prefix}los-patios/" class="dropdown-item-link">Los Patios</a></li>
-                        <li><a href="{prefix}villa-del-rosario/" class="dropdown-item-link">Villa del Rosario</a></li>
-                        <li><a href="{prefix}el-zulia/" class="dropdown-item-link">El Zulia</a></li>
+                        <li><a href="{prefix}estaciones/san-cayetano/" class="dropdown-item-link">San Cayetano</a></li>
+                        <li><a href="{prefix}estaciones/cucuta-2/" class="dropdown-item-link">Cúcuta</a></li>
+                        <li><a href="{prefix}estaciones/los-patios/" class="dropdown-item-link">Los Patios</a></li>
+                        <li><a href="{prefix}estaciones/villa-del-rosario/" class="dropdown-item-link">Villa del Rosario</a></li>
+                        <li><a href="{prefix}estaciones/el-zulia/" class="dropdown-item-link">El Zulia</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-submenu">
-                    <a href="{prefix}mas-e-d-s/" class="dropdown-item-link">E.D.S Norte <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
+                    <a href="{prefix}estaciones/mas-e-d-s/" class="dropdown-item-link">E.D.S Norte <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
                     <ul class="dropdown-submenu-menu">
-                        <li><a href="{prefix}tibu-2/" class="dropdown-item-link">Tibú</a></li>
-                        <li><a href="{prefix}bucarasica/" class="dropdown-item-link">Bucarasica</a></li>
-                        <li><a href="{prefix}el-tarra/" class="dropdown-item-link">El Tarra</a></li>
+                        <li><a href="{prefix}estaciones/tibu-2/" class="dropdown-item-link">Tibú</a></li>
+                        <li><a href="{prefix}estaciones/bucarasica/" class="dropdown-item-link">Bucarasica</a></li>
+                        <li><a href="{prefix}estaciones/el-tarra/" class="dropdown-item-link">El Tarra</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-submenu">
-                    <a href="{prefix}oriental/" class="dropdown-item-link">E.D.S SurOriental <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
+                    <a href="{prefix}estaciones/oriental/" class="dropdown-item-link">E.D.S SurOriental <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
                     <ul class="dropdown-submenu-menu">
-                        <li><a href="{prefix}toledo/" class="dropdown-item-link">Toledo</a></li>
-                        <li><a href="{prefix}ragonvalia/" class="dropdown-item-link">Ragonvalia</a></li>
+                        <li><a href="{prefix}estaciones/toledo/" class="dropdown-item-link">Toledo</a></li>
+                        <li><a href="{prefix}estaciones/ragonvalia/" class="dropdown-item-link">Ragonvalia</a></li>
                     </ul>
                 </li>
-                <li><a href="{prefix}pamplona/" class="dropdown-item-link">E.D.S Sur Occidental</a></li>
+                <li><a href="{prefix}estaciones/pamplona/" class="dropdown-item-link">E.D.S Sur Occidental</a></li>
                 <li class="dropdown-submenu">
-                    <a href="{prefix}occidental/" class="dropdown-item-link">E.D.S Occidental <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
+                    <a href="{prefix}estaciones/occidental/" class="dropdown-item-link">E.D.S Occidental <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem; float: right; margin-top: 0.25rem;"></i></a>
                     <ul class="dropdown-submenu-menu">
-                        <li><a href="{prefix}rio-de-oro/" class="dropdown-item-link">Río de Oro</a></li>
-                        <li><a href="{prefix}la-esperanza/" class="dropdown-item-link">La Esperanza</a></li>
-                        <li><a href="{prefix}hacari/" class="dropdown-item-link">Hacarí</a></li>
-                        <li><a href="{prefix}la-playa/" class="dropdown-item-link">La Playa</a></li>
-                        <li><a href="{prefix}teorama/" class="dropdown-item-link">Teorama</a></li>
-                        <li><a href="{prefix}san-calixto/" class="dropdown-item-link">San Calixto</a></li>
-                        <li><a href="{prefix}ocana/" class="dropdown-item-link">Ocaña</a></li>
-                        <li><a href="{prefix}el-carmen/" class="dropdown-item-link">El Carmen</a></li>
-                        <li><a href="{prefix}convencion/" class="dropdown-item-link">Convención</a></li>
-                        <li><a href="{prefix}cachira/" class="dropdown-item-link">Cáchira</a></li>
-                        <li><a href="{prefix}abrego/" class="dropdown-item-link">Ábrego</a></li>
+                        <li><a href="{prefix}estaciones/rio-de-oro/" class="dropdown-item-link">Río de Oro</a></li>
+                        <li><a href="{prefix}estaciones/la-esperanza/" class="dropdown-item-link">La Esperanza</a></li>
+                        <li><a href="{prefix}estaciones/hacari/" class="dropdown-item-link">Hacarí</a></li>
+                        <li><a href="{prefix}estaciones/la-playa/" class="dropdown-item-link">La Playa</a></li>
+                        <li><a href="{prefix}estaciones/teorama/" class="dropdown-item-link">Teorama</a></li>
+                        <li><a href="{prefix}estaciones/san-calixto/" class="dropdown-item-link">San Calixto</a></li>
+                        <li><a href="{prefix}estaciones/ocana/" class="dropdown-item-link">Ocaña</a></li>
+                        <li><a href="{prefix}estaciones/el-carmen/" class="dropdown-item-link">El Carmen</a></li>
+                        <li><a href="{prefix}estaciones/convencion/" class="dropdown-item-link">Convención</a></li>
+                        <li><a href="{prefix}estaciones/cachira/" class="dropdown-item-link">Cáchira</a></li>
+                        <li><a href="{prefix}estaciones/abrego/" class="dropdown-item-link">Ábrego</a></li>
                     </ul>
                 </li>
             </ul>
@@ -383,7 +383,7 @@ for zone, stations in ZONE_STATIONS.items():
                 <i class="fa-solid fa-gas-pump"></i>
             </div>
             <h4>E.D.S. {station['name']}</h4>
-            <a href="/{station['path']}/" class="station-link-btn">Ver Estación</a>
+            <a href="/estaciones/{station['path']}/" class="station-link-btn">Ver Estación</a>
         </div>
         """
 
@@ -481,7 +481,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <ul>
                     <li><a href="{prefix}"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
                     <li><a href="{prefix}about-us/company/"><i class="fa-solid fa-chevron-right"></i> Quiénes Somos</a></li>
-                    <li><a href="{prefix}e-d-s-vinculadas/"><i class="fa-solid fa-chevron-right"></i> E.D.S. Vinculadas</a></li>
+                    <li><a href="{prefix}estaciones/e-d-s-vinculadas/"><i class="fa-solid fa-chevron-right"></i> E.D.S. Vinculadas</a></li>
                     <li><a href="{prefix}projects/"><i class="fa-solid fa-chevron-right"></i> Responsabilidad Social</a></li>
                     <li><a href="{prefix}asociados/"><i class="fa-solid fa-chevron-right"></i> Asociados</a></li>
                     <li><a href="{prefix}contact/"><i class="fa-solid fa-chevron-right"></i> Contáctenos</a></li>
@@ -588,7 +588,7 @@ for page in inventory:
                     <h2>Distribuidor Mayorista de Combustibles</h2>
                     <p>Líderes y referentes en el manejo y comercialización de combustibles en el Norte de Santander y sur de Cesar.</p>
                     <div style="display: flex; gap: 1rem;">
-                        <a href="{prefix}e-d-s-vinculadas/" class="btn btn-primary">E.D.S. Vinculadas</a>
+                        <a href="{prefix}estaciones/e-d-s-vinculadas/" class="btn btn-primary">E.D.S. Vinculadas</a>
                         <a href="{prefix}contact/" class="btn btn-secondary" style="background-color: transparent; color: white; border-color: rgba(255,255,255,0.4)">Escríbenos</a>
                     </div>
                 </div>
