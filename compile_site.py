@@ -57,7 +57,9 @@ MUNI_MAP = {
     "tibu": "Tibú",
     "tibu-2": "Tibú",
     "toledo": "Toledo",
-    "villa-del-rosario": "Villa del Rosario"
+    "villa-del-rosario": "Villa del Rosario",
+    "sardinata": "Sardinata",
+    "chinacota": "Chinácota"
 }
 
 # Zone mapping for interactive E.D.S. selector
