@@ -74,11 +74,13 @@ ZONE_STATIONS = {
     "norte": [
         {"name": "Tibú", "path": "tibu-2"},
         {"name": "Bucarasica", "path": "bucarasica"},
-        {"name": "El Tarra", "path": "el-tarra"}
+        {"name": "El Tarra", "path": "el-tarra"},
+        {"name": "Sardinata", "path": "sardinata"}
     ],
     "suroriental": [
         {"name": "Toledo", "path": "toledo"},
-        {"name": "Ragonvalia", "path": "ragonvalia"}
+        {"name": "Ragonvalia", "path": "ragonvalia"},
+        {"name": "Chinácota", "path": "chinacota"}
     ],
     "suroccidental": [
         {"name": "Pamplona", "path": "pamplona"}
@@ -261,6 +263,7 @@ def generate_menu_html(prefix, current_path, is_mobile=False):
                         <li><a href="{prefix}estaciones/tibu-2/" class="dropdown-item-link">Tibú</a></li>
                         <li><a href="{prefix}estaciones/bucarasica/" class="dropdown-item-link">Bucarasica</a></li>
                         <li><a href="{prefix}estaciones/el-tarra/" class="dropdown-item-link">El Tarra</a></li>
+                        <li><a href="{prefix}estaciones/sardinata/" class="dropdown-item-link">Sardinata</a></li>
                     </ul>
                 </li>
                 <li class="dropdown-submenu">
@@ -268,6 +271,7 @@ def generate_menu_html(prefix, current_path, is_mobile=False):
                     <ul class="dropdown-submenu-menu">
                         <li><a href="{prefix}estaciones/toledo/" class="dropdown-item-link">Toledo</a></li>
                         <li><a href="{prefix}estaciones/ragonvalia/" class="dropdown-item-link">Ragonvalia</a></li>
+                        <li><a href="{prefix}estaciones/chinacota/" class="dropdown-item-link">Chinácota</a></li>
                     </ul>
                 </li>
                 <li><a href="{prefix}estaciones/pamplona/" class="dropdown-item-link">E.D.S Sur Occidental</a></li>
