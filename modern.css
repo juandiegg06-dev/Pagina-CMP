@@ -789,29 +789,62 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 }
 
 .eds-stations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.zone-muni-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .zone-muni-heading {
-  grid-column: 1 / -1;
-  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 0.5rem;
-  margin-top: 1.5rem;
-}
-
-.zone-muni-heading:first-child {
-  margin-top: 0;
+  color: var(--slate-900);
+  background-color: var(--slate-50);
 }
 
 .zone-muni-count {
   font-weight: 400;
   font-size: 0.9rem;
   color: var(--slate-600, #64748b);
+}
+
+.zone-muni-toggle {
+  flex-shrink: 0;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 50px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.zone-muni-toggle:hover {
+  background-color: var(--primary-dark, #007a2e);
+}
+
+.zone-muni-cards {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1.25rem;
+}
+
+.zone-muni-cards.expanded {
+  display: grid;
 }
 
 .station-card {

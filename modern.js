@@ -92,26 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // 3. E.D.S. Interactive Municipio Filter Logic
   const tabButtons = document.querySelectorAll(".eds-tab-btn");
-  const stationCards = document.querySelectorAll(".station-card, .zone-muni-heading");
+  const muniGroups = document.querySelectorAll(".zone-muni-group");
 
-  if (tabButtons.length > 0 && stationCards.length > 0) {
+  if (tabButtons.length > 0 && muniGroups.length > 0) {
     function filterStations(muni) {
-      stationCards.forEach(card => {
-        const cardMuni = card.getAttribute("data-muni");
-        const displayType = card.classList.contains("zone-muni-heading") ? "block" : "flex";
-        if (muni === "all" || cardMuni === muni) {
-          card.style.display = displayType;
-          // Quick entry animation
-          card.style.opacity = "0";
-          card.style.transform = "translateY(5px)";
-          setTimeout(() => {
-            card.style.transition = "all 0.3s ease";
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          }, 50);
-        } else {
-          card.style.display = "none";
-        }
+      muniGroups.forEach(group => {
+        const groupMuni = group.getAttribute("data-muni");
+        group.style.display = (muni === "all" || groupMuni === muni) ? "block" : "none";
       });
     }
 
@@ -134,6 +121,15 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       filterStations("all");
     }
+
+    // Expand/collapse individual municipio station lists on demand
+    document.querySelectorAll(".zone-muni-toggle").forEach(toggleBtn => {
+      toggleBtn.addEventListener("click", function() {
+        const cardsWrap = this.closest(".zone-muni-group").querySelector(".zone-muni-cards");
+        const isExpanded = cardsWrap.classList.toggle("expanded");
+        this.textContent = isExpanded ? "Ocultar estaciones" : "Ver estaciones";
+      });
+    });
   }
 
   // 4. Smooth animations on elements when they hover
