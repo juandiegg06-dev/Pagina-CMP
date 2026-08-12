@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // 3. E.D.S. Interactive Municipio Filter Logic
   const tabButtons = document.querySelectorAll(".eds-tab-btn");
   const muniGroups = document.querySelectorAll(".zone-muni-group");
+  const mobileSelect = document.getElementById("eds-mobile-select");
 
   if (tabButtons.length > 0 && muniGroups.length > 0) {
     function filterStations(muni) {
@@ -104,23 +105,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
     tabButtons.forEach(btn => {
       btn.addEventListener("click", function() {
-        // Toggle active button style
+        const alreadyActive = this.classList.contains("tab-active");
         tabButtons.forEach(b => b.classList.remove("tab-active"));
-        this.classList.add("tab-active");
-        
-        // Filter stations
-        const muniTarget = this.getAttribute("data-muni-target");
-        filterStations(muniTarget);
+
+        if (alreadyActive) {
+          // Deselect: go back to showing everything, nothing highlighted
+          filterStations("all");
+          if (mobileSelect) mobileSelect.value = "all";
+        } else {
+          this.classList.add("tab-active");
+          const muniTarget = this.getAttribute("data-muni-target");
+          filterStations(muniTarget);
+          if (mobileSelect) mobileSelect.value = muniTarget;
+        }
       });
     });
 
-    // Default: Trigger display for the active tab on page load
-    const activeTab = document.querySelector(".eds-tab-btn.tab-active");
-    if (activeTab) {
-      filterStations(activeTab.getAttribute("data-muni-target"));
-    } else {
-      filterStations("all");
+    if (mobileSelect) {
+      mobileSelect.addEventListener("change", function() {
+        const muniTarget = this.value;
+        tabButtons.forEach(b => b.classList.remove("tab-active"));
+        if (muniTarget !== "all") {
+          const matchingBtn = document.querySelector(`.eds-tab-btn[data-muni-target="${muniTarget}"]`);
+          if (matchingBtn) matchingBtn.classList.add("tab-active");
+        }
+        filterStations(muniTarget);
+      });
     }
+
+    // Default on page load: no button selected, show everything
+    filterStations("all");
 
     // Expand/collapse individual municipio station lists on demand
     document.querySelectorAll(".zone-muni-toggle").forEach(toggleBtn => {

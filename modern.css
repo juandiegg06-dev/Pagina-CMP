@@ -760,6 +760,10 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   margin-top: 1rem;
 }
 
+.eds-mobile-select {
+  display: none;
+}
+
 .eds-tabs {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -1321,6 +1325,48 @@ footer.site-footer {
     display: none; /* Hide top details bar on mobile */
   }
   
+  /* E.D.S. Station Finder — mobile gets a completely different, native-feeling control */
+  .eds-tabs {
+    display: none;
+  }
+
+  .eds-mobile-select {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--slate-800);
+    background-color: white;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23009639' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+  }
+
+  .zone-muni-heading {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+
+  .zone-muni-toggle {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .zone-muni-cards {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
   .hero-slider-container {
     height: 400px;
   }
