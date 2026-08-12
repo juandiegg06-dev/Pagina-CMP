@@ -90,16 +90,16 @@ document.addEventListener("DOMContentLoaded", function() {
     startSlideShow();
   }
 
-  // 3. E.D.S. Interactive Zone Filter Logic
+  // 3. E.D.S. Interactive Municipio Filter Logic
   const tabButtons = document.querySelectorAll(".eds-tab-btn");
   const stationCards = document.querySelectorAll(".station-card, .zone-muni-heading");
 
   if (tabButtons.length > 0 && stationCards.length > 0) {
-    function filterStations(zone) {
+    function filterStations(muni) {
       stationCards.forEach(card => {
-        const cardZone = card.getAttribute("data-zone");
+        const cardMuni = card.getAttribute("data-muni");
         const displayType = card.classList.contains("zone-muni-heading") ? "block" : "flex";
-        if (zone === "all" || cardZone === zone) {
+        if (muni === "all" || cardMuni === muni) {
           card.style.display = displayType;
           // Quick entry animation
           card.style.opacity = "0";
@@ -122,15 +122,15 @@ document.addEventListener("DOMContentLoaded", function() {
         this.classList.add("tab-active");
         
         // Filter stations
-        const zoneTarget = this.getAttribute("data-zone-target");
-        filterStations(zoneTarget);
+        const muniTarget = this.getAttribute("data-muni-target");
+        filterStations(muniTarget);
       });
     });
 
     // Default: Trigger display for the active tab on page load
     const activeTab = document.querySelector(".eds-tab-btn.tab-active");
     if (activeTab) {
-      filterStations(activeTab.getAttribute("data-zone-target"));
+      filterStations(activeTab.getAttribute("data-muni-target"));
     } else {
       filterStations("all");
     }

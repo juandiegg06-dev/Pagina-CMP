@@ -63,42 +63,183 @@ MUNI_MAP = {
 }
 
 # Zone mapping for interactive E.D.S. selector
-ZONE_STATIONS = {
-    "metropolitana": [
-        {"name": "San Cayetano", "path": "san-cayetano"},
-        {"name": "Cúcuta", "path": "cucuta-2"},
-        {"name": "Los Patios", "path": "los-patios"},
-        {"name": "Villa del Rosario", "path": "villa-del-rosario"},
-        {"name": "El Zulia", "path": "el-zulia"}
-    ],
-    "norte": [
-        {"name": "Tibú", "path": "tibu-2"},
-        {"name": "Bucarasica", "path": "bucarasica"},
-        {"name": "El Tarra", "path": "el-tarra"},
-        {"name": "Sardinata", "path": "sardinata"}
-    ],
-    "suroriental": [
-        {"name": "Toledo", "path": "toledo"},
-        {"name": "Ragonvalia", "path": "ragonvalia"},
-        {"name": "Chinácota", "path": "chinacota"}
-    ],
-    "suroccidental": [
-        {"name": "Pamplona", "path": "pamplona"}
-    ],
-    "occidental": [
-        {"name": "Río de Oro", "path": "rio-de-oro"},
-        {"name": "La Esperanza", "path": "la-esperanza"},
-        {"name": "Hacarí", "path": "hacari"},
-        {"name": "La Playa", "path": "la-playa"},
-        {"name": "Teorama", "path": "teorama"},
-        {"name": "San Calixto", "path": "san-calixto"},
-        {"name": "Ocaña", "path": "ocana"},
-        {"name": "El Carmen", "path": "el-carmen"},
-        {"name": "Convención", "path": "convencion"},
-        {"name": "Cáchira", "path": "cachira"},
-        {"name": "Ábrego", "path": "abrego"}
-    ]
+MUNI_STATIONS = {
+    "san-cayetano": {"name": "San Cayetano", "stations": [
+        {"name": "EDS Parador De Occidente", "slug": "eds-parador-de-occidente"},
+        {"name": "EDS El Eden Campestre", "slug": "eds-el-eden-campestre"},
+        {"name": "EDS Peralonso", "slug": "eds-peralonso"},
+        {"name": "EDS Zona San Isidro", "slug": "eds-zona-san-isidro"},
+        {"name": "Zona Refrescante La Estación", "slug": "zona-refrescante-la-estacion"},
+    ]},
+    "cucuta": {"name": "Cúcuta", "stations": [
+        {"name": "EDS La Javilla", "slug": "eds-la-javilla"},
+        {"name": "Estacion De Servicio Rivera De Las Americas", "slug": "estacion-de-servicio-rivera-de-las-americas"},
+        {"name": "Estación De Servicios Sol Del Oriente", "slug": "estacion-de-servicios-sol-del-oriente"},
+        {"name": "Estación De Servicio Ventura", "slug": "estacion-de-servicio-ventura"},
+        {"name": "EDS Tel Aviv", "slug": "eds-tel-aviv"},
+        {"name": "E.D.S La Alejandra", "slug": "e-d-s-la-alejandra"},
+        {"name": "EDS Patillales", "slug": "eds-patillales"},
+        {"name": "EDS El Punto Camionero", "slug": "eds-el-punto-camionero"},
+        {"name": "EDS El Peñon", "slug": "eds-el-penon"},
+        {"name": "EDS Codirco", "slug": "eds-codirco"},
+        {"name": "Estacion De Servicio Tecnipetrol", "slug": "estacion-de-servicio-tecnipetrol"},
+        {"name": "EDS El Nuevo Terminal", "slug": "eds-el-nuevo-terminal"},
+        {"name": "EDS El Paso Cucuta", "slug": "eds-el-paso-cucuta"},
+        {"name": "Estacion De Servicios Aguaclara", "slug": "estacion-de-servicios-aguaclara"},
+        {"name": "EDS Balconcitos", "slug": "eds-balconcitos"},
+        {"name": "Cooperativa Agropecuaria Del Norte De Santander", "slug": "cooperativa-agropecuaria-del-norte-de-santander"},
+        {"name": "Estacion De Servicio Puerto Via", "slug": "estacion-de-servicio-puerto-via"},
+        {"name": "Estación De Servicio Riviera Plaza", "slug": "estacion-de-servicio-riviera-plaza"},
+        {"name": "Estacion De Servicio Miraflores", "slug": "estacion-de-servicio-miraflores"},
+        {"name": "EDS Gran Oripaya", "slug": "eds-gran-oripaya"},
+        {"name": "E.D.S. El Gran Rancho Rey", "slug": "e-d-s-el-gran-rancho-rey"},
+        {"name": "Estacion De Servicio Bogota", "slug": "estacion-de-servicio-bogota"},
+    ]},
+    "los-patios": {"name": "Los Patios", "stations": [
+        {"name": "Estacion De Servicio EDS Llanitos", "slug": "estacion-de-servicio-eds-llanitos"},
+        {"name": "Estacion De Servicio Parador Andino", "slug": "estacion-de-servicio-parador-andino"},
+        {"name": "Estacion De Servicio Los Vados", "slug": "estacion-de-servicio-los-vados"},
+    ]},
+    "villa-del-rosario": {"name": "Villa del Rosario", "stations": [
+        {"name": "E.D.S. La Internacional", "slug": "e-d-s-la-internacional"},
+        {"name": "EDS La Frontera", "slug": "eds-la-frontera"},
+        {"name": "EDS Los Samanes De Villa Del Rosario", "slug": "eds-los-samanes-de-villa-del-rosario"},
+        {"name": "Estacion De Servicio Expendio De Acpm Y Lubricantes El Puente", "slug": "estacion-de-servicio-expendio-de-acpm-y-lubricantes-el-puente"},
+    ]},
+    "el-zulia": {"name": "El Zulia", "stations": [
+        {"name": "Estacion De Servicio Cadriada", "slug": "estacion-de-servicio-cadriada"},
+        {"name": "Estacion De Servicio Seycar", "slug": "estacion-de-servicio-seycar"},
+        {"name": "Estación De Servicio Jonas", "slug": "estacion-de-servicio-jonas"},
+        {"name": "Estación De Servicio Las Lomas", "slug": "estacion-de-servicio-las-lomas"},
+        {"name": "Estación De Servicio La Plazoleta", "slug": "estacion-de-servicio-la-plazoleta"},
+        {"name": "Estacion De Servicio Silvania Sas", "slug": "estacion-de-servicio-silvania-sas"},
+        {"name": "Estacion De Servicio Borriqueros", "slug": "estacion-de-servicio-borriqueros"},
+        {"name": "Estacion De Servicio Arrayanes", "slug": "estacion-de-servicio-arrayanes"},
+        {"name": "Estacion De Servicio Los Rios", "slug": "estacion-de-servicio-los-rios"},
+        {"name": "Estacion De Servicio La Ceiba Jo El Zulia", "slug": "estacion-de-servicio-la-ceiba-jo-el-zulia"},
+        {"name": "E.D.S La Primavera S.A.S", "slug": "e-d-s-la-primavera-s-a-s"},
+        {"name": "EDS Jesus De Nazaret", "slug": "eds-jesus-de-nazaret"},
+        {"name": "E.D.S La Represa", "slug": "e-d-s-la-represa"},
+        {"name": "EDS Zulinorte", "slug": "eds-zulinorte"},
+        {"name": "EDS La Zuliana", "slug": "eds-la-zuliana"},
+        {"name": "Estacion De Servicio Mia Cj", "slug": "estacion-de-servicio-mia-cj"},
+        {"name": "Estacion De Servicio Los Sanchez", "slug": "estacion-de-servicio-los-sanchez"},
+        {"name": "Estación De Servicio El Aventino", "slug": "estacion-de-servicio-el-aventino"},
+        {"name": "Estacion De Servicio Risarlda Jose", "slug": "estacion-de-servicio-risarlda-jose"},
+        {"name": "Estacion De Servicios La Gran Zuliana", "slug": "estacion-de-servicios-la-gran-zuliana"},
+        {"name": "E.D.S. Torrasa El Zulia", "slug": "e-d-s-torrasa-el-zulia"},
+        {"name": "Estacion De Servicio Israel", "slug": "estacion-de-servicio-israel"},
+        {"name": "Estacion De Servicio Astilleros Ciro", "slug": "estacion-de-servicio-astilleros-ciro"},
+        {"name": "Estacion De Servicio La Virgen", "slug": "estacion-de-servicio-la-virgen"},
+    ]},
+    "tibu": {"name": "Tibú", "stations": [
+        {"name": "Estación De Servicio Km 23", "slug": "estacion-de-servicio-km-23"},
+        {"name": "Estacion De Servicio La Nueva Florida", "slug": "estacion-de-servicio-la-nueva-florida"},
+        {"name": "Estacion De Servicio Jardin Del Norte", "slug": "estacion-de-servicio-jardin-del-norte"},
+        {"name": "EDS Altoviento", "slug": "eds-altoviento"},
+        {"name": "Estacion De Servicio Castillo Alvarez", "slug": "estacion-de-servicio-castillo-alvarez"},
+        {"name": "EDS La Gran Estación Fyc", "slug": "eds-la-gran-estacion-fyc"},
+        {"name": "E.D.S Campo Dos", "slug": "e-d-s-campo-dos"},
+        {"name": "E.D.S. La Gabarra Syo S.A.S.", "slug": "e-d-s-la-gabarra-syo-s-a-s"},
+        {"name": "EDS Los Angeles F Y C", "slug": "eds-los-angeles-f-y-c"},
+        {"name": "Estacion De Servicio Lagunitas", "slug": "estacion-de-servicio-lagunitas"},
+        {"name": "Estación De Servicio Monterrey Fabio Y Ciro", "slug": "estacion-de-servicio-monterrey-fabio-y-ciro"},
+        {"name": "Estacion De Servicio La Cuatro Acosta", "slug": "estacion-de-servicio-la-cuatro-acosta"},
+    ]},
+    "bucarasica": {"name": "Bucarasica", "stations": [
+        {"name": "Estacion De Servicio El Oasis Acv", "slug": "estacion-de-servicio-el-oasis-acv"},
+        {"name": "Estacion De Servicio El Poblado Net", "slug": "estacion-de-servicio-el-poblado-net"},
+    ]},
+    "sardinata": {"name": "Sardinata", "stations": [
+        {"name": "EDS Gremon", "slug": "eds-gremon"},
+        {"name": "E.D.S La Virgen Sr Sas", "slug": "e-d-s-la-virgen-sr-sas"},
+    ]},
+    "toledo": {"name": "Toledo", "stations": [
+        {"name": "Estacion De Servicio Marnell S.A.S.", "slug": "estacion-de-servicio-marnell-s-a-s"},
+        {"name": "E.D.S. Don Diego", "slug": "e-d-s-don-diego"},
+        {"name": "Estacion De Servicio Santa Rita", "slug": "estacion-de-servicio-santa-rita"},
+    ]},
+    "ragonvalia": {"name": "Ragonvalia", "stations": [
+        {"name": "Estacion De Servicio El Pedregal Ragonvalia", "slug": "estacion-de-servicio-el-pedregal-ragonvalia"},
+        {"name": "Estacion De Servicio La Floresta Ragonvalia", "slug": "estacion-de-servicio-la-floresta-ragonvalia"},
+    ]},
+    "chinacota": {"name": "Chinácota", "stations": [
+        {"name": "E.D.S Chitacomar 1", "slug": "e-d-s-chitacomar-1"},
+    ]},
+    "pamplona": {"name": "Pamplona", "stations": [
+        {"name": "Estacion De Servicio Troco", "slug": "estacion-de-servicio-troco"},
+    ]},
+    "rio-de-oro": {"name": "Río de Oro", "stations": [
+        {"name": "Estacion De Servicio La Labranza", "slug": "estacion-de-servicio-la-labranza"},
+        {"name": "Estacion De Servicio Jm Peaje", "slug": "estacion-de-servicio-jm-peaje"},
+    ]},
+    "la-esperanza": {"name": "La Esperanza", "stations": [
+        {"name": "Estacion De Servicio La Victoria 1", "slug": "estacion-de-servicio-la-victoria-1"},
+        {"name": "EDS Cafe Corriendo", "slug": "eds-cafe-corriendo"},
+        {"name": "Estacion De Servicio La Gran Silvana I", "slug": "estacion-de-servicio-la-gran-silvana-i"},
+        {"name": "Estacion De Servicio Gedeon", "slug": "estacion-de-servicio-gedeon"},
+        {"name": "Estacion De Servicio La Pedregosa", "slug": "estacion-de-servicio-la-pedregosa"},
+    ]},
+    "hacari": {"name": "Hacarí", "stations": [
+        {"name": "Estacion De Servicio La Palma Hacari", "slug": "estacion-de-servicio-la-palma-hacari"},
+        {"name": "EDS Duran", "slug": "eds-duran"},
+        {"name": "Estacion De Servicio Quebraditas", "slug": "estacion-de-servicio-quebraditas"},
+    ]},
+    "la-playa": {"name": "La Playa", "stations": [
+        {"name": "EDS El Tunal Sas", "slug": "eds-el-tunal-sas"},
+    ]},
+    "teorama": {"name": "Teorama", "stations": [
+        {"name": "EDS San Jorge G", "slug": "eds-san-jorge-g"},
+        {"name": "Estacion De Servicio San Pablo", "slug": "estacion-de-servicio-san-pablo"},
+    ]},
+    "ocana": {"name": "Ocaña", "stations": [
+        {"name": "Estacion De Servicios Leomar", "slug": "estacion-de-servicios-leomar"},
+        {"name": "Estación De Servicio Los Barbatuscos", "slug": "estacion-de-servicio-los-barbatuscos"},
+        {"name": "Estacion De Servicio Patillal", "slug": "estacion-de-servicio-patillal"},
+        {"name": "Estación De Servicio El Oasis Ocaña", "slug": "estacion-de-servicio-el-oasis-ocana"},
+        {"name": "Estación De Servicio Ocañerita", "slug": "estacion-de-servicio-ocanerita"},
+        {"name": "Servicentro Ocana", "slug": "servicentro-ocana"},
+        {"name": "Estacion De Servicio Cootransunidos", "slug": "estacion-de-servicio-cootransunidos"},
+        {"name": "Estacion De Servicio El Limon", "slug": "estacion-de-servicio-el-limon"},
+        {"name": "Estacion De Servicio Rodeo", "slug": "estacion-de-servicio-rodeo"},
+        {"name": "Estacion De Servicio Agua De La Virgen", "slug": "estacion-de-servicio-agua-de-la-virgen"},
+        {"name": "Estacion De Servicio La Once", "slug": "estacion-de-servicio-la-once"},
+        {"name": "Estacion De Servicio La Leonelda", "slug": "estacion-de-servicio-la-leonelda"},
+        {"name": "Estacion De Servicio El Terminal De Ocaña", "slug": "estacion-de-servicio-el-terminal-de-ocana"},
+        {"name": "Estacion De Servicio Cootranshacaritama", "slug": "estacion-de-servicio-cootranshacaritama"},
+        {"name": "Estacion De Servicio Circunvalar", "slug": "estacion-de-servicio-circunvalar"},
+        {"name": "Estación De Servicio Luis Fernando", "slug": "estacion-de-servicio-luis-fernando"},
+        {"name": "Servicentro Avenida", "slug": "servicentro-avenida"},
+    ]},
+    "el-carmen": {"name": "El Carmen", "stations": [
+        {"name": "E.D.S. La Villanueva", "slug": "e-d-s-la-villanueva"},
+        {"name": "Estacion De Servicio La Troncal Del Carbon", "slug": "estacion-de-servicio-la-troncal-del-carbon"},
+    ]},
+    "convencion": {"name": "Convención", "stations": [
+        {"name": "Estacion De Servicio Convencion", "slug": "estacion-de-servicio-convencion"},
+        {"name": "Estacion De Gasolina Las Mercedes", "slug": "estacion-de-gasolina-las-mercedes"},
+    ]},
+    "cachira": {"name": "Cáchira", "stations": [
+        {"name": "EDS Balmoral S.A.S", "slug": "eds-balmoral-s-a-s"},
+        {"name": "EDS Las Marias S.A.S", "slug": "eds-las-marias-s-a-s"},
+    ]},
+    "abrego": {"name": "Ábrego", "stations": [
+        {"name": "Estacion De Servicio Marien", "slug": "estacion-de-servicio-marien"},
+        {"name": "Estacion De Servicio La Estrella De David", "slug": "estacion-de-servicio-la-estrella-de-david"},
+        {"name": "Estacion De Servicio El Tun-tun", "slug": "estacion-de-servicio-el-tun-tun"},
+        {"name": "Estacion De Servicio El Molino De Abrego", "slug": "estacion-de-servicio-el-molino-de-abrego"},
+        {"name": "Estacion De Servicio La Cruz", "slug": "estacion-de-servicio-la-cruz"},
+        {"name": "Estacion De Servicio Multiservicios Los Sauces", "slug": "estacion-de-servicio-multiservicios-los-sauces"},
+        {"name": "Estacion De Servicio Oropoma", "slug": "estacion-de-servicio-oropoma"},
+    ]},
 }
+
+RETAINED_STATIONS = [
+    {"muni_slug": "cucuta-2", "name": "Cúcuta (Zona Urbana)"},
+    {"muni_slug": "tibu-2", "name": "Tibú (Zona Urbana)"},
+    {"muni_slug": "el-tarra", "name": "El Tarra"},
+    {"muni_slug": "san-calixto", "name": "San Calixto"},
+]
 
 def get_path_prefix(rel_path):
     parts = rel_path.replace("\\", "/").split("/")
@@ -379,17 +520,39 @@ for post in blog_posts[:3]: # Take 3 most recent posts
     </div>
     """
 
-# Generate E.D.S Zone Finder Grid HTML
+# Generate E.D.S Municipio Finder Grid HTML (grouped by municipio, with headings)
 zone_grid_html = ""
-for zone, stations in ZONE_STATIONS.items():
-    for station in stations:
+eds_tabs_html = '<button class="eds-tab-btn tab-active" data-muni-target="all">Todas</button>\n'
+for muni_slug, muni_data in MUNI_STATIONS.items():
+    muni_name = muni_data["name"]
+    muni_stations = muni_data["stations"]
+    eds_tabs_html += f'                    <button class="eds-tab-btn" data-muni-target="{muni_slug}">{muni_name}</button>\n'
+    zone_grid_html += f"""
+        <div class="zone-muni-heading" data-muni="{muni_slug}">{muni_name} <span class="zone-muni-count">({len(muni_stations)})</span></div>
+        """
+    for station in muni_stations:
         zone_grid_html += f"""
-        <div class="station-card" data-zone="{zone}">
+        <div class="station-card" data-muni="{muni_slug}">
             <div class="station-icon">
                 <i class="fa-solid fa-gas-pump"></i>
             </div>
-            <h4>E.D.S. {station['name']}</h4>
-            <a href="./estaciones/{station['path']}/" class="station-link-btn">Ver Estación</a>
+            <h4>{station['name']}</h4>
+            <a href="./estaciones/{station['slug']}/" class="station-link-btn">Ver Estación</a>
+        </div>
+        """
+
+for retained in RETAINED_STATIONS:
+    muni_slug = retained["muni_slug"]
+    name = retained["name"]
+    eds_tabs_html += f'                    <button class="eds-tab-btn" data-muni-target="{muni_slug}">{name}</button>\n'
+    zone_grid_html += f"""
+        <div class="zone-muni-heading" data-muni="{muni_slug}">{name} <span class="zone-muni-count">(1)</span></div>
+        <div class="station-card" data-muni="{muni_slug}">
+            <div class="station-icon">
+                <i class="fa-solid fa-gas-pump"></i>
+            </div>
+            <h4>{name}</h4>
+            <a href="./estaciones/{muni_slug}/" class="station-link-btn">Ver Estación</a>
         </div>
         """
 
@@ -617,12 +780,7 @@ for page in inventory:
             
             <div class="eds-zones-widget">
                 <div class="eds-tabs">
-                    <button class="eds-tab-btn tab-active" data-zone-target="metropolitana">Metropolitana</button>
-                    <button class="eds-tab-btn" data-zone-target="norte">Norte</button>
-                    <button class="eds-tab-btn" data-zone-target="suroriental">Sur Oriental</button>
-                    <button class="eds-tab-btn" data-zone-target="suroccidental">Sur Occidental</button>
-                    <button class="eds-tab-btn" data-zone-target="occidental">Occidental</button>
-                </div>
+                    {eds_tabs_html}                </div>
                 
                 <div class="eds-stations-grid">
                     {zone_grid_html}
