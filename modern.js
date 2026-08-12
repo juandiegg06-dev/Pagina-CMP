@@ -92,14 +92,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // 3. E.D.S. Interactive Zone Filter Logic
   const tabButtons = document.querySelectorAll(".eds-tab-btn");
-  const stationCards = document.querySelectorAll(".station-card");
+  const stationCards = document.querySelectorAll(".station-card, .zone-muni-heading");
 
   if (tabButtons.length > 0 && stationCards.length > 0) {
     function filterStations(zone) {
       stationCards.forEach(card => {
         const cardZone = card.getAttribute("data-zone");
+        const displayType = card.classList.contains("zone-muni-heading") ? "block" : "flex";
         if (zone === "all" || cardZone === zone) {
-          card.style.display = "flex";
+          card.style.display = displayType;
           // Quick entry animation
           card.style.opacity = "0";
           card.style.transform = "translateY(5px)";

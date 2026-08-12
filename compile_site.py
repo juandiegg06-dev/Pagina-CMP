@@ -389,7 +389,7 @@ for zone, stations in ZONE_STATIONS.items():
                 <i class="fa-solid fa-gas-pump"></i>
             </div>
             <h4>E.D.S. {station['name']}</h4>
-            <a href="/estaciones/{station['path']}/" class="station-link-btn">Ver Estación</a>
+            <a href="./estaciones/{station['path']}/" class="station-link-btn">Ver Estación</a>
         </div>
         """
 
