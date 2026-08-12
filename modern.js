@@ -99,7 +99,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function filterStations(muni) {
       muniGroups.forEach(group => {
         const groupMuni = group.getAttribute("data-muni");
-        group.style.display = (muni === "all" || groupMuni === muni) ? "block" : "none";
+        // "none" (nothing selected) hides every group. Otherwise show only the match ("all" shows everything).
+        const shouldShow = muni !== "none" && (muni === "all" || groupMuni === muni);
+        group.style.display = shouldShow ? "block" : "none";
       });
     }
 
@@ -109,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
         tabButtons.forEach(b => b.classList.remove("tab-active"));
 
         if (alreadyActive) {
-          // Deselect: go back to showing everything, nothing highlighted
-          filterStations("all");
-          if (mobileSelect) mobileSelect.value = "all";
+          // Deselect: show nothing, same as the initial state
+          filterStations("none");
+          if (mobileSelect) mobileSelect.value = "none";
         } else {
           this.classList.add("tab-active");
           const muniTarget = this.getAttribute("data-muni-target");
@@ -125,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
       mobileSelect.addEventListener("change", function() {
         const muniTarget = this.value;
         tabButtons.forEach(b => b.classList.remove("tab-active"));
-        if (muniTarget !== "all") {
+        if (muniTarget !== "all" && muniTarget !== "none") {
           const matchingBtn = document.querySelector(`.eds-tab-btn[data-muni-target="${muniTarget}"]`);
           if (matchingBtn) matchingBtn.classList.add("tab-active");
         }
@@ -133,8 +135,8 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
-    // Default on page load: no button selected, show everything
-    filterStations("all");
+    // Default on page load: nothing selected, nothing shown
+    filterStations("none");
 
     // Expand/collapse individual municipio station lists on demand
     document.querySelectorAll(".zone-muni-toggle").forEach(toggleBtn => {
