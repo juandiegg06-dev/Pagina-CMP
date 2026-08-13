@@ -34,6 +34,15 @@ RewriteRule ^e-d-s/?$ /estaciones/e-d-s/ [R=301,L]
 RewriteRule ^mas-e-d-s/?$ /estaciones/mas-e-d-s/ [R=301,L]
 RewriteRule ^estaciones/cucuta-2/?$ /estaciones/cucuta/ [R=301,L]
 RewriteRule ^estaciones/tibu-2/?$ /estaciones/tibu/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-campo-dos-s-a-s/?$ /estaciones/e-d-s-campo-dos/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-la-cuatro-acosta-s-a-s/?$ /estaciones/estacion-de-servicio-la-cuatro-acosta/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-tel-aviv/?$ /estaciones/eds-tel-aviv/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-la-alejandra-2/?$ /estaciones/e-d-s-la-alejandra/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-patillales/?$ /estaciones/eds-patillales/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-el-penon-s-a-s/?$ /estaciones/eds-el-penon/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-codirco-s-a-s/?$ /estaciones/eds-codirco/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-miraflores/?$ /estaciones/estacion-de-servicio-miraflores/ [R=301,L]
+RewriteRule ^estaciones/e-d-s-gran-oripaya-s-a-s/?$ /estaciones/eds-gran-oripaya/ [R=301,L]
 # END estaciones-redirects
 
 # php -- BEGIN cPanel-generated handler, do not edit
