@@ -345,6 +345,11 @@ header.site-header {
   transition: var(--transition-fast);
 }
 
+.dropdown-item-highlight {
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+}
+
 .dropdown-item-link:hover {
   background-color: var(--slate-100);
   color: var(--primary);
