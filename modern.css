@@ -131,6 +131,7 @@ li {
 
 .btn-primary:hover, input[type="submit"]:hover {
   background-color: var(--primary-hover);
+  color: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 149, 58, 0.4);
 }
@@ -144,6 +145,7 @@ li {
 
 .btn-secondary:hover {
   background-color: var(--slate-100);
+  color: var(--slate-900);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -964,7 +966,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   height: 220px;
   overflow: hidden;
   position: relative;
-  background-color: var(--slate-900);
+  background-color: #d4d4d4;
 }
 
 .blog-card-image-wrap img {
@@ -1454,4 +1456,63 @@ footer.site-footer {
     padding: 0.5rem 0.6rem;
     font-size: 0.75rem;
   }
+}
+
+/* ==========================================================================
+   Share Buttons Widget (Facebook / X / WhatsApp) — legacy WordPress markup
+   ========================================================================== */
+.share-buttons, .single-share-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.share-buttons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  background-color: var(--slate-100);
+  color: var(--slate-700);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.share-buttons a:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.share-buttons a svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.share-buttons .soc-font-icon {
+  display: none;
+}
+
+/* Visually hide text meant only for screen readers, without removing it from the DOM */
+.screen-reader-text {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Fix invisible white social icons from legacy WordPress "Redes Sociales" shortcode widget */
+.dt-shortcode-soc-icons .soc-font-icon,
+.dt-shortcode-soc-icons .soc-icon,
+.dt-shortcode-soc-icons a:not(:hover) .soc-font-icon,
+.dt-shortcode-soc-icons a:not(:hover) .soc-icon {
+  color: var(--primary) !important;
 }
