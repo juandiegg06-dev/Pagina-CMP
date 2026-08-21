@@ -509,7 +509,7 @@ tr:hover td {
 /* Card layout blocks */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -523,6 +523,7 @@ tr:hover td {
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  min-width: 0;
 }
 
 .card::before {
@@ -579,9 +580,8 @@ iframe {
 /* Responsive Embed Wrapper */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  padding-top: 25px;
-  height: 0;
+  aspect-ratio: 16 / 9;
+  width: 100%;
   margin: 2rem 0;
 }
 
@@ -793,7 +793,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 
 .eds-tabs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.5rem;
   margin-bottom: 2.5rem;
 }
@@ -874,7 +874,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 
 .zone-muni-cards {
   display: none;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   padding: 1.25rem;
 }
@@ -940,7 +940,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
 }
 
@@ -1448,7 +1448,7 @@ footer.site-footer {
 
 @media (max-width: 480px) {
   .eds-tabs {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 0.4rem;
   }
   
