@@ -1396,6 +1396,7 @@ footer.site-footer {
 
   .hero-slider-container {
     height: 480px;
+    margin-bottom: 1.5rem;
   }
 
   /* Hide prev/next arrows — the carousel still auto-advances every 6s */
@@ -1421,7 +1422,8 @@ footer.site-footer {
     background-color: white;
     border-radius: 20px 20px 0 0;
     padding: 1.5rem 1.5rem 1.75rem 1.5rem;
-    box-shadow: 0 -8px 24px rgba(0,0,0,0.15);
+    box-shadow: 0 -12px 32px rgba(0,0,0,0.28);
+    border-top: 1px solid rgba(0,0,0,0.06);
     text-align: left;
   }
 
