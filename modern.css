@@ -397,6 +397,7 @@ header.site-header {
   font-size: 1.5rem;
   color: var(--slate-900);
   cursor: pointer;
+  margin-left: auto;
 }
 
 /* Breadcrumb Banner */
@@ -731,6 +732,10 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   display: flex;
   gap: 0.6rem;
   z-index: 10;
+}
+
+.slider-dots {
+  display: none;
 }
 
 .slider-btn {
@@ -1409,22 +1414,24 @@ footer.site-footer {
     background: linear-gradient(180deg, rgba(10,20,15,0.35) 0%, rgba(10,20,15,0.15) 45%, rgba(10,20,15,0.75) 100%);
   }
 
-  /* Text sits directly over the image, minimal, no card */
+  /* Text sits directly over the image, in the upper area, minimal, no card */
   .slide-content {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    top: 18%;
+    bottom: auto;
     max-width: 100%;
     margin: 0;
-    padding: 0 1.5rem 2rem 1.5rem;
+    padding: 0 1.5rem;
     text-align: left;
     touch-action: pan-y;
   }
 
   .slide-content h2 {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
 
@@ -1439,6 +1446,34 @@ footer.site-footer {
   .slide-content .slide-cta-row,
   .slide-content > div {
     display: none !important;
+  }
+
+  /* Slide position dots fill the lower area of the image and replace
+     the removed arrows as a way to see how many slides there are */
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.25rem;
+    z-index: 10;
+  }
+
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.45);
+    transition: var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .slider-dot.slider-dot-active {
+    background-color: white;
+    width: 22px;
+    border-radius: 4px;
   }
 
   .content-section {
