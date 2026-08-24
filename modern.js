@@ -159,4 +159,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  // 5. Mobile-only footer accordion — wraps each footer column's content
+  // so it can collapse behind its heading on small screens. Harmless on
+  // desktop since the collapse styling only applies inside the mobile
+  // media query.
+  document.querySelectorAll(".footer-column").forEach(col => {
+    const heading = col.querySelector("h3");
+    if (!heading) return;
+    const wrapper = document.createElement("div");
+    wrapper.className = "footer-column-content";
+    // Move every sibling after the heading into the wrapper
+    while (heading.nextSibling) {
+      wrapper.appendChild(heading.nextSibling);
+    }
+    col.appendChild(wrapper);
+    heading.addEventListener("click", function() {
+      col.classList.toggle("footer-column-open");
+    });
+  });
+
 });

@@ -1516,3 +1516,149 @@ footer.site-footer {
 .dt-shortcode-soc-icons a:not(:hover) .soc-icon {
   color: var(--primary) !important;
 }
+
+/* ==========================================================================
+   Mobile-first redesign — distinct from desktop, not just a shrunk version
+   ========================================================================== */
+
+/* Fixed bottom quick-action bar (mobile only) */
+.mobile-quickbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 62px; /* keep content clear of the fixed bar */
+  }
+
+  .mobile-quickbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+    z-index: 1500;
+    padding: 0.4rem 0;
+    padding-bottom: calc(0.4rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-quickbar-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--slate-700);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.3rem 0.2rem;
+  }
+
+  .mobile-quickbar-item i {
+    font-size: 1.05rem;
+    color: var(--primary);
+  }
+
+  .mobile-quickbar-item:active {
+    color: var(--primary);
+  }
+
+  /* Simplified mobile header: drop the tagline, tighten spacing */
+  .site-desc-text {
+    display: none;
+  }
+
+  .branding-logo img {
+    height: 38px;
+  }
+
+  .site-title-text {
+    font-size: 1.1rem;
+  }
+
+  .nav-container {
+    padding: 0.6rem 1rem;
+  }
+
+  /* Full width drawer on narrow phones instead of a fixed 300px sliver */
+  .mobile-nav-drawer {
+    width: 85%;
+    max-width: 340px;
+    right: -100%;
+    padding: 1.5rem;
+  }
+
+  .mobile-nav-drawer.drawer-open {
+    right: 0;
+  }
+
+  .mobile-menu-item-link {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* Buttons stack full-width — a native mobile pattern instead of
+     side-by-side desktop-style button rows */
+  .content-section .btn,
+  .card .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Footer accordion: collapse each column behind its heading */
+  .footer-column h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: 1rem 0;
+  }
+
+  .footer-column h3::after {
+    content: '\002B';
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: var(--transition-fast);
+  }
+
+  .footer-column-open h3::after {
+    content: '\2212';
+  }
+
+  .footer-column-content {
+    display: none;
+    padding-bottom: 1rem;
+  }
+
+  .footer-column-open .footer-column-content {
+    display: block;
+  }
+
+  .footer-column {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .footer-top {
+    gap: 0;
+  }
+
+  /* Touch-friendly form fields */
+  input, select, textarea {
+    min-height: 46px;
+    font-size: 1rem !important;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+}
