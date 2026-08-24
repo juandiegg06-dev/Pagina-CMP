@@ -1,0 +1,6 @@
+# Server / runtime artifacts that should never be committed
+error_log
+*.log
+
+# Dev tooling (kept locally via npm install, not tracked)
+dev-tools/node_modules/
