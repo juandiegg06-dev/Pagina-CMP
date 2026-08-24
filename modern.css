@@ -1395,42 +1395,54 @@ footer.site-footer {
   }
 
   .hero-slider-container {
-    height: 400px;
+    height: 480px;
   }
 
-  .slide-content {
-    margin-left: 6%;
-    padding: 1.5rem;
-  }
-
-  .slide-content > div {
-    flex-direction: column;
-    gap: 0.75rem !important;
-  }
-
-  .slide-content .btn {
-    width: fit-content;
-  }
-  
-  .slide-content h2 {
-    font-size: 1.8rem;
-  }
-  
-  .slide-content p {
-    font-size: 1rem;
-  }
-  
+  /* Hide prev/next arrows — the carousel still auto-advances every 6s */
   .slider-controls {
-    right: 1.5rem;
-    bottom: 1.5rem;
+    display: none;
   }
-  
-  .slider-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+
+  /* Let the photo show through clearly instead of a dark reading overlay,
+     since the text now sits on its own white card below */
+  .slide-overlay {
+    background: linear-gradient(180deg, rgba(10,20,15,0.15) 0%, rgba(10,20,15,0.05) 60%, rgba(10,20,15,0.35) 100%);
   }
-  
+
+  /* Floating white content card overlapping the bottom of the image,
+     like a bottom sheet — image keeps sliding visibly behind it */
+  .slide-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    margin: 0;
+    background-color: white;
+    border-radius: 20px 20px 0 0;
+    padding: 1.5rem 1.5rem 1.75rem 1.5rem;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.15);
+    text-align: left;
+  }
+
+  .slide-content h2 {
+    color: var(--slate-900);
+    font-size: 1.4rem;
+    text-shadow: none;
+  }
+
+  .slide-content p {
+    color: var(--slate-700);
+    font-size: 0.92rem;
+    text-shadow: none;
+    margin-bottom: 0;
+  }
+
+  /* The CTA button row is dropped on mobile — the card stays focused on the message */
+  .slide-content > div {
+    display: none;
+  }
+
   .content-section {
     padding: 1.5rem;
   }
