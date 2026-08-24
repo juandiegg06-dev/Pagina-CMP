@@ -88,6 +88,32 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize Slider
     showSlide(0);
     startSlideShow();
+
+    // Touch swipe support — slide to the next/previous image with a finger
+    const sliderContainer = document.querySelector(".hero-slider-container");
+    if (sliderContainer) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      sliderContainer.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      sliderContainer.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const delta = touchEndX - touchStartX;
+        const SWIPE_THRESHOLD = 40;
+        if (Math.abs(delta) > SWIPE_THRESHOLD) {
+          stopSlideShow();
+          if (delta < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          startSlideShow();
+        }
+      }, { passive: true });
+    }
   }
 
   // 3. E.D.S. Interactive Municipio Filter Logic
