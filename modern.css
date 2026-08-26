@@ -175,7 +175,7 @@ li {
 }
 
 .top-bar-content {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1421,7 +1421,7 @@ footer.site-footer {
     position: absolute;
     left: 0;
     right: 0;
-    top: 18%;
+    top: 8%;
     bottom: auto;
     max-width: 100%;
     margin: 0;
@@ -1455,27 +1455,30 @@ footer.site-footer {
   .slider-dots {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 1.25rem;
+    bottom: 1.5rem;
     z-index: 10;
   }
 
   .slider-dot {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: rgba(255,255,255,0.45);
     transition: var(--transition-fast);
     cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.6);
   }
 
   .slider-dot.slider-dot-active {
     background-color: white;
-    width: 22px;
-    border-radius: 4px;
+    width: 32px;
+    height: 12px;
+    border-radius: 6px;
+    border-color: white;
   }
 
   .content-section {
