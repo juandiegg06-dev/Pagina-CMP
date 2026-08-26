@@ -274,16 +274,18 @@ header.site-header {
 .main-navigation-menu {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 1.1rem;
+  flex-wrap: nowrap;
 }
 
 .menu-item-link {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--slate-800);
   padding: 0.5rem 0.2rem;
   position: relative;
+  white-space: nowrap;
 }
 
 .menu-item-link::after {
