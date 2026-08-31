@@ -243,19 +243,17 @@ header.site-header {
   max-width: 1600px;
   margin: 0 auto;
   padding: 1rem 0.75rem;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .branding-logo {
-  grid-column: 1;
-  justify-self: start;
+  flex-shrink: 0;
 }
 
 .desktop-navigation {
-  grid-column: 2;
+  flex: 1;
   justify-self: center;
   display: flex;
   justify-content: center;
@@ -427,8 +425,7 @@ header.site-header {
 /* Menu Toggle (Burger) */
 .mobile-menu-toggle {
   display: none;
-  grid-column: 3;
-  justify-self: end;
+  margin-left: auto;
   background: none;
   border: none;
   font-size: 1.5rem;
