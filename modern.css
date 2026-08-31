@@ -252,11 +252,11 @@ header.site-header {
 }
 
 .header-top-row {
-  padding: 0.9rem 1.25rem;
+  padding: 0.45rem 1rem;
 }
 
 .header-bottom-row {
-  padding: 0.4rem 1.25rem;
+  padding: 0.2rem 1.25rem;
   background-color: var(--verde2);
 }
 
