@@ -237,7 +237,6 @@ header.site-header {
   top: 0;
   z-index: 1000;
   background-color: var(--glass-bg);
-  border-bottom: 1px solid var(--glass-border);
   backdrop-filter: var(--glass-blur);
   transition: var(--transition-smooth);
 }
@@ -256,8 +255,9 @@ header.site-header {
 }
 
 .header-bottom-row {
-  padding: 0.2rem 1.25rem;
+  padding: 0.55rem 1.25rem 0.2rem;
   background-color: var(--verde2);
+  line-height: 1;
 }
 
 .desktop-navigation {
