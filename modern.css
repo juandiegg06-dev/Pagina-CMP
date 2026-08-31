@@ -251,9 +251,23 @@ header.site-header {
   margin: 0 auto;
   padding: 0.9rem 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 1rem;
+}
+
+.branding-logo {
+  flex-shrink: 0;
+}
+
+.desktop-navigation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.main-navigation-menu {
+  min-width: 0;
 }
 
 .branding-logo {
