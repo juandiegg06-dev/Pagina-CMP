@@ -233,13 +233,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function rotateTopBar() {
       topBarPanels[topBarIndex].classList.remove("tb-visible");
-      setTimeout(() => {
-        topBarIndex = (topBarIndex + 1) % topBarPanels.length;
-        topBarPanels[topBarIndex].classList.add("tb-visible");
-      }, 380);
+      topBarIndex = (topBarIndex + 1) % topBarPanels.length;
+      topBarPanels[topBarIndex].classList.add("tb-visible");
     }
 
-    setInterval(rotateTopBar, 4500);
+    setInterval(rotateTopBar, 4000);
   }
 
 });
