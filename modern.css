@@ -242,7 +242,7 @@ header.site-header {
 .nav-container {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 1rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -271,10 +271,13 @@ header.site-header {
 }
 
 .branding-logo img {
-  height: 42px;
+  height: 62px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  position: relative;
+  margin-top: -20px;
+  z-index: 5;
 }
 
 .branding-text {
