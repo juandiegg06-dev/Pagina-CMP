@@ -217,25 +217,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // 6. Top bar rotator: cross-fades between the contact info and the
-  // social icons instead of showing both at once, keeping the bar
-  // centered and uncluttered.
-  const topBarContent = document.querySelector(".top-bar-content");
-  const topBarInfo = document.querySelector(".top-bar-info");
-  const topBarSocials = document.querySelector(".top-bar-socials");
-
-  if (topBarContent && topBarInfo && topBarSocials) {
-    topBarContent.classList.add("tb-has-rotator");
-    topBarInfo.classList.add("tb-visible");
-
-    const topBarPanels = [topBarInfo, topBarSocials];
-    let topBarIndex = 0;
-
-    setInterval(() => {
-      topBarPanels[topBarIndex].classList.remove("tb-visible");
-      topBarIndex = (topBarIndex + 1) % topBarPanels.length;
-      topBarPanels[topBarIndex].classList.add("tb-visible");
-    }, 4000);
-  }
-
 });
