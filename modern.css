@@ -177,17 +177,17 @@ li {
 .top-bar-content {
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
   display: flex;
   align-items: center;
   min-height: 24px;
+  gap: 1rem;
 }
 
 .top-bar-info-rotator {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 1;
   min-width: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .top-bar-panel {
