@@ -165,12 +165,6 @@ li {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Thin decorative green strip */
-.top-strip {
-  height: 6px;
-  background-color: var(--verde2);
-}
-
 .top-bar-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -263,7 +257,7 @@ header.site-header {
 
 .header-bottom-row {
   padding: 0.75rem 1.25rem;
-  border-top: 1px solid var(--slate-200, #e2e8f0);
+  background-color: var(--verde2);
 }
 
 .desktop-navigation {
@@ -327,7 +321,7 @@ header.site-header {
   font-family: 'Outfit', sans-serif;
   font-size: 0.98rem;
   font-weight: 600;
-  color: var(--slate-800);
+  color: #ffffff;
   padding: 0.5rem 0.2rem;
   position: relative;
   white-space: nowrap;
@@ -340,12 +334,12 @@ header.site-header {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--primary);
+  background-color: var(--lima1);
   transition: var(--transition-smooth);
 }
 
 .menu-item-link:hover, .menu-item-active .menu-item-link {
-  color: var(--primary);
+  color: var(--lima1);
 }
 
 .menu-item-link:hover::after, .menu-item-active .menu-item-link::after {
