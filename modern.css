@@ -165,13 +165,10 @@ li {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Top bar details */
-.top-bar {
+/* Thin decorative green strip */
+.top-strip {
+  height: 6px;
   background-color: var(--verde2);
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  font-weight: 500;
 }
 
 .top-bar-content {
@@ -184,7 +181,6 @@ li {
 }
 
 .top-bar-info-rotator {
-  flex: 1;
   min-width: 0;
   display: flex;
   justify-content: center;
@@ -208,24 +204,39 @@ li {
 }
 
 .top-bar-panel i {
-  color: var(--lima1);
+  color: var(--primary);
 }
 
 .top-bar-socials {
   display: flex;
   gap: 1rem;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .top-bar-socials a {
-  color: rgba(255,255,255,0.85);
+  color: var(--slate-700);
   font-size: 0.95rem;
 }
 
 .top-bar-socials a:hover {
-  color: var(--lima1);
+  color: var(--primary);
   transform: translateY(-1px);
+}
+
+/* Header contact row (phone/address + socials, next to the logo) */
+.header-contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  gap: 2rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  border-left: 1px solid var(--slate-200, #e2e8f0);
+  border-right: 1px solid var(--slate-200, #e2e8f0);
+  padding: 0 1.5rem;
 }
 
 /* Header & Glassmorphic Navigation */
@@ -248,8 +259,13 @@ header.site-header {
   gap: 1rem;
 }
 
-.branding-logo {
-  flex-shrink: 0;
+.header-top-row {
+  padding: 0.55rem 0.75rem;
+}
+
+.header-bottom-row {
+  padding: 0 0.75rem;
+  border-top: 1px solid var(--slate-200, #e2e8f0);
 }
 
 .desktop-navigation {
@@ -268,13 +284,7 @@ header.site-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  position: relative;
-  z-index: 5;
-  background: #fff;
-  border-radius: 12px;
-  padding: 0.45rem 0.9rem;
-  margin-top: -26px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  flex-shrink: 0;
 }
 
 .branding-logo img {
@@ -1386,6 +1396,10 @@ footer.site-footer {
     display: block; /* Show menu burger toggle */
   }
   
+  .header-bottom-row {
+    display: none; /* Nav menu now lives in the mobile drawer */
+  }
+  
   .slide-content {
     margin-left: 5%;
     max-width: 90%;
@@ -1400,8 +1414,12 @@ footer.site-footer {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.6rem; }
   
-  .top-bar {
-    display: none; /* Hide top details bar on mobile */
+  .top-strip {
+    display: none; /* Hide decorative strip on mobile */
+  }
+
+  .header-contact-info {
+    display: none; /* Hide phone/address block on mobile */
   }
   
   /* E.D.S. Station Finder — mobile gets a completely different, native-feeling control */
