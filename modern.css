@@ -227,16 +227,14 @@ li {
 .header-contact-info {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex: 1;
   min-width: 0;
   gap: 2rem;
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--slate-700);
-  border-left: 1px solid var(--slate-200, #e2e8f0);
-  border-right: 1px solid var(--slate-200, #e2e8f0);
-  padding: 0 1.5rem;
+  padding-right: 1.5rem;
 }
 
 /* Header & Glassmorphic Navigation */
@@ -260,7 +258,7 @@ header.site-header {
 }
 
 .header-top-row {
-  padding: 0.55rem 0.75rem;
+  padding: 0.9rem 1.25rem;
 }
 
 .header-bottom-row {
