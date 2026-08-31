@@ -217,4 +217,29 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  // 6. Top bar rotator: cycles between the contact info and the social
+  // icons, one at a time. The current panel fades out COMPLETELY before
+  // the next one starts fading in, so they never overlap.
+  const topBarContent = document.querySelector(".top-bar-content");
+  const topBarInfo = document.querySelector(".top-bar-info");
+  const topBarSocials = document.querySelector(".top-bar-socials");
+
+  if (topBarContent && topBarInfo && topBarSocials) {
+    topBarContent.classList.add("tb-has-rotator");
+    topBarInfo.classList.add("tb-visible");
+
+    const topBarPanels = [topBarInfo, topBarSocials];
+    let topBarIndex = 0;
+
+    function rotateTopBar() {
+      topBarPanels[topBarIndex].classList.remove("tb-visible");
+      setTimeout(() => {
+        topBarIndex = (topBarIndex + 1) % topBarPanels.length;
+        topBarPanels[topBarIndex].classList.add("tb-visible");
+      }, 380);
+    }
+
+    setInterval(rotateTopBar, 4500);
+  }
+
 });
