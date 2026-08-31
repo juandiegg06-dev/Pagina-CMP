@@ -217,18 +217,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // 6. Top bar rotator: cycles between the contact info and the social
-  // icons, one at a time. The current panel fades out COMPLETELY before
-  // the next one starts fading in, so they never overlap.
-  const topBarContent = document.querySelector(".top-bar-content");
-  const topBarInfo = document.querySelector(".top-bar-info");
-  const topBarSocials = document.querySelector(".top-bar-socials");
+  // 6. Top bar rotator: cycles between the two phone/address panels.
+  // The social icons are NOT part of the rotation — they stay fixed on
+  // the right at all times. Uses a direct display toggle (no transition)
+  // so the panels can never overlap.
+  const topBarPanels = document.querySelectorAll(".top-bar-panel");
 
-  if (topBarContent && topBarInfo && topBarSocials) {
-    topBarContent.classList.add("tb-has-rotator");
-    topBarInfo.classList.add("tb-visible");
-
-    const topBarPanels = [topBarInfo, topBarSocials];
+  if (topBarPanels.length > 1) {
     let topBarIndex = 0;
 
     function rotateTopBar() {

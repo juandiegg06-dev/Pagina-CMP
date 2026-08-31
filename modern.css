@@ -177,42 +177,44 @@ li {
 .top-bar-content {
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  min-height: 24px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-}
-
-.top-bar-content.tb-has-rotator .top-bar-info,
-.top-bar-content.tb-has-rotator .top-bar-socials {
-  display: none;
-}
-
-.top-bar-content.tb-has-rotator .top-bar-info.tb-visible,
-.top-bar-content.tb-has-rotator .top-bar-socials.tb-visible {
-  display: flex;
-}
-
-.top-bar-info {
-  display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.top-bar-info span {
+.top-bar-info-rotator {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.top-bar-panel {
+  display: none;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.top-bar-panel.tb-visible {
+  display: flex;
+}
+
+.top-bar-panel span {
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-.top-bar-info i {
+.top-bar-panel i {
   color: var(--lima1);
 }
 
 .top-bar-socials {
   display: flex;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .top-bar-socials a {
@@ -267,7 +269,7 @@ header.site-header {
 }
 
 .branding-logo img {
-  height: 46px;
+  height: 30px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -281,7 +283,7 @@ header.site-header {
 
 .site-title-text {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.3rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: var(--slate-900);
   line-height: 1.1;
@@ -289,11 +291,11 @@ header.site-header {
 }
 
 .site-desc-text {
-  font-size: 0.72rem;
+  font-size: 0.56rem;
   font-weight: 600;
   color: var(--primary);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 /* Desktop Menu Navigation */
