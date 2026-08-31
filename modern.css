@@ -209,7 +209,7 @@ li {
 
 .top-bar-socials a {
   color: var(--slate-700);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .top-bar-socials a:hover {
@@ -224,8 +224,8 @@ li {
   justify-content: flex-end;
   flex: 1;
   min-width: 0;
-  gap: 2rem;
-  font-size: 0.82rem;
+  gap: 1.5rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--slate-700);
   padding-right: 1.5rem;
@@ -280,7 +280,7 @@ header.site-header {
 }
 
 .branding-logo img {
-  height: 52px;
+  height: 40px;
   width: auto;
   object-fit: contain;
 }
@@ -293,7 +293,7 @@ header.site-header {
 
 .site-title-text {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--slate-900);
   line-height: 1.1;
@@ -301,7 +301,7 @@ header.site-header {
 }
 
 .site-desc-text {
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: var(--primary);
   text-transform: uppercase;
@@ -319,7 +319,7 @@ header.site-header {
 
 .menu-item-link {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #ffffff;
   padding: 0.5rem 0.2rem;
