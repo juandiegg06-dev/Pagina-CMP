@@ -255,9 +255,14 @@ header.site-header {
 }
 
 .header-bottom-row {
-  padding: 0.6rem 1.25rem 0rem;
+  padding: 0.1rem 1.25rem 0.02rem;
   background-color: var(--verde2);
   line-height: 1;
+  overflow: hidden;
+}
+
+.header-bottom-row .desktop-navigation {
+  transform: translateY(6px);
 }
 
 .desktop-navigation {
