@@ -255,7 +255,7 @@ header.site-header {
 }
 
 .header-bottom-row {
-  padding: 0.2rem 1.25rem 0.05rem;
+  padding: 0.1rem 1.25rem 0.02rem;
   background-color: var(--verde2);
   line-height: 1;
 }
