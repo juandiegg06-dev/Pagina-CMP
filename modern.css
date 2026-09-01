@@ -288,7 +288,6 @@ header.site-header {
 .branding-text {
   display: flex;
   flex-direction: column;
-  max-width: 250px;
 }
 
 .site-title-text {
@@ -306,6 +305,7 @@ header.site-header {
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 /* Desktop Menu Navigation */
