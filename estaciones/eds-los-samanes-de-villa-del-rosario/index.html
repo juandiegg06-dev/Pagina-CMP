@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <!-- Modern Stylesheet -->
-    <link rel="stylesheet" href="../../modern.css?v=1788359666">
+    <link rel="stylesheet" href="../../modern.css?v=1788360829">
 </head>
 <body>
     <!-- Glassmorphic Site Header -->
@@ -178,7 +178,7 @@
 </ul>
 <p></p>
 <div id="station-map" style="height: 380px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);"></div>
-<p style="margin-top: 1rem;"><a href="https://www.google.com/maps/search/?api=1&query=7.8400266,-72.4651484" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-solid fa-location-dot"></i> Ver en Google Maps</a></p>								</div>
+<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--slate-600, #64748b);"><i class="fa-solid fa-circle-info"></i> Ubicación aproximada en Norte de Santander. Pronto actualizaremos el punto exacto de esta estación.</p>								</div>
 				</div>
 					</div>
 		</div>
@@ -266,22 +266,12 @@
     <script src="../../modern.js?v=1788206028"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        var stationMap = L.map('station-map', { scrollWheelZoom: false }).setView([7.8400266, -72.4651484], 16);
+        var stationMap = L.map('station-map', { scrollWheelZoom: false }).setView([7.9463, -72.8988], 9);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(stationMap);
-
-        var pinIcon = L.icon({
-            iconUrl: '../../Imagenes/Pin_Ubicacion.png',
-            iconSize: [46, 46],
-            iconAnchor: [23, 46],
-            popupAnchor: [0, -42]
-        });
-
-        L.marker([7.8400266, -72.4651484], { icon: pinIcon }).addTo(stationMap)
-            .bindPopup('EDS Los Samanes De Villa Del Rosario').openPopup();
     </script>
     <div class="mobile-quickbar">
         <a href="tel:3154148812" class="mobile-quickbar-item">

@@ -7,8 +7,9 @@
     <link rel="icon" href="../../wp-content/uploads/2022/01/cropped-logopeq-32x32.jpg" sizes="32x32">
     <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <!-- Modern Stylesheet -->
-    <link rel="stylesheet" href="../../modern.css?v=1788359666">
+    <link rel="stylesheet" href="../../modern.css?v=1788360829">
 </head>
 <body>
     <!-- Glassmorphic Site Header -->
@@ -174,7 +175,10 @@
 									<p><strong>E.D.S La Primavera S.A.S</strong> es una de las estaciones de servicio afiliadas a Coomulpinort en el municipio de El Zulia, dentro de la zona Metropolitana de Norte de Santander. Hace parte de nuestra red de distribución mayorista de combustibles, atendiendo a la comunidad local y a los vehículos que transitan por la región.</p>
 <ul>
 <li><a href="../el-zulia/">Ver todas las estaciones en El Zulia</a></li>
-</ul>								</div>
+</ul>
+<p></p>
+<div id="station-map" style="height: 380px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);"></div>
+<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--slate-600, #64748b);"><i class="fa-solid fa-circle-info"></i> Ubicación aproximada en Norte de Santander. Pronto actualizaremos el punto exacto de esta estación.</p>								</div>
 				</div>
 					</div>
 		</div>
@@ -278,5 +282,14 @@
         </a>
     </div>
     <script src="../../modern.js?v=1788206028"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        var stationMap = L.map('station-map', { scrollWheelZoom: false }).setView([7.9463, -72.8988], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(stationMap);
+    </script>
 </body>
 </html>
