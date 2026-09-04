@@ -15,6 +15,10 @@
     --paper:#f6f4ee;
     --accent:#c1522b;
     --panel:#ffffff;
+    --lima1:#CED600;
+    --verde1:#3FAE29;
+    --lima2:#94D500;
+    --verde2:#00953A;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;height:100%;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);}
@@ -22,7 +26,7 @@
   #map{position:absolute;inset:0;}
 
   .leaflet-popup-content-wrapper{border-radius:4px;}
-  .popup-title{font-weight:700;font-size:13.5px;margin-bottom:2px;color:var(--ink);}
+  .popup-title{font-weight:700;font-size:13.5px;margin-bottom:2px;color:var(--verde2);}
   .popup-sub{font-size:11.5px;color:#666;line-height:1.4;}
 
   .muni-label{
@@ -38,35 +42,39 @@
   .station-label{
     font-size:10.5px !important;
     font-weight:600;
-    color:#1c2b24 !important;
-    background:rgba(255,255,255,0.92) !important;
-    border:1px solid #d8d2c4 !important;
+    color:var(--ink) !important;
+    background:rgba(255,255,255,0.94) !important;
+    border:1px solid var(--lima2) !important;
     box-shadow:0 1px 3px rgba(0,0,0,0.15) !important;
     padding:1px 6px !important;
   }
-  .station-label::before{ border-right-color:#d8d2c4 !important; }
+  .station-label::before{ border-right-color:var(--lima2) !important; }
 
-  .pin-aproximado{ filter: grayscale(35%) sepia(60%) hue-rotate(-20deg) saturate(300%); opacity:0.85; }
+  .pin-aproximado{ filter: sepia(60%) hue-rotate(45deg) saturate(400%) brightness(0.95); opacity:0.9; }
 
   .leaflet-div-icon{ background:transparent !important; border:none !important; }
 
-  .marker-cluster-custom{
-    background: rgba(0,149,58,0.75);
-    border-radius:50%;
-  }
+  .marker-cluster-custom{ border-radius:50%; }
+  .cluster-chico{ background: rgba(63,174,41,0.75); }
+  .cluster-chico div{ background: var(--verde1); }
+  .cluster-medio{ background: rgba(0,149,58,0.75); }
+  .cluster-medio div{ background: var(--verde2); }
+  .cluster-grande{ background: rgba(148,213,0,0.75); }
+  .cluster-grande div{ background: var(--lima2); }
   .marker-cluster-custom div{
-    background: rgba(0,149,58,0.9);
     color:#fff;
     font-weight:700;
     font-size:12px;
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
+    border:2px solid #fff;
   }
 
   #buscador{
     position:absolute;top:12px;left:12px;z-index:1000;
     background:var(--panel);
     border-radius:6px;
+    border-top:3px solid var(--verde2);
     box-shadow:0 2px 8px rgba(0,0,0,0.2);
     padding:6px 10px;
     width:220px;
@@ -75,24 +83,26 @@
     width:100%;border:none;outline:none;font-size:13px;
     padding:4px 2px;font-family:inherit;color:var(--ink);
   }
+  #buscador input:focus{ box-shadow:inset 0 -2px 0 var(--lima2); }
   #buscador-resultado{font-size:11px;color:#777;padding:2px 2px 0;}
 
   #leyenda{
     position:absolute;bottom:16px;right:12px;z-index:1000;
     background:var(--panel);
     border-radius:6px;
+    border-top:3px solid var(--lima1);
     box-shadow:0 2px 8px rgba(0,0,0,0.2);
     padding:10px 12px;
     font-size:11.5px;
     line-height:1.7;
   }
-  #leyenda .titulo{font-weight:700;font-size:12px;margin-bottom:4px;}
+  #leyenda .titulo{font-weight:700;font-size:12px;margin-bottom:4px;color:var(--verde2);}
   #leyenda .fila{display:flex;align-items:center;gap:6px;}
   #leyenda .muestra{width:14px;height:14px;flex:0 0 auto;}
-  #leyenda .linea-depto{border-top:2px dashed #00953A;width:14px;}
-  #leyenda .linea-muni{background:#3FAE29;opacity:0.4;border:1px solid #3FAE29;}
+  #leyenda .linea-depto{border-top:2px dashed var(--verde2);width:14px;}
+  #leyenda .linea-muni{background:var(--verde1);opacity:0.4;border:1px solid var(--verde1);}
   #leyenda img{width:16px;height:16px;}
-  #leyenda .aprox-muestra{filter: grayscale(35%) sepia(60%) hue-rotate(-20deg) saturate(300%);}
+  #leyenda .aprox-muestra{filter: sepia(60%) hue-rotate(45deg) saturate(400%) brightness(0.95);}
 </style>
 </head>
 <body>
@@ -229,9 +239,10 @@
     iconCreateFunction: function(cluster) {
       const count = cluster.getChildCount();
       const size = count < 10 ? 32 : count < 25 ? 40 : 48;
+      const clase = count < 10 ? 'cluster-chico' : count < 25 ? 'cluster-medio' : 'cluster-grande';
       return L.divIcon({
         html: `<div style="width:${size}px;height:${size}px;">${count}</div>`,
-        className: 'marker-cluster-custom',
+        className: `marker-cluster-custom ${clase}`,
         iconSize: [size, size]
       });
     }
