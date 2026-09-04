@@ -6,6 +6,9 @@
 <title>EDS Norte de Santander — Límites reales</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <style>
   :root{
     --ink:#1c2b24;
@@ -17,31 +20,6 @@
   html,body{margin:0;height:100%;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);}
   #app{position:relative;height:100vh;width:100vw;}
   #map{position:absolute;inset:0;}
-
-  #header{
-    position:absolute;top:14px;left:14px;z-index:1000;
-    background:rgba(255,255,255,0.92);
-    padding:12px 18px;
-    border-radius:3px;
-    box-shadow:0 1px 6px rgba(0,0,0,0.10);
-    max-width:320px;
-    border-left:3px solid var(--accent);
-  }
-  #header h1{margin:0 0 4px 0;font-size:15.5px;font-weight:600;letter-spacing:.2px;}
-  #header p{margin:0;font-size:12px;color:#666;line-height:1.4;}
-
-  #legend{
-    position:absolute;bottom:20px;left:14px;z-index:1000;
-    background:rgba(255,255,255,0.92);
-    padding:9px 14px;
-    border-radius:3px;
-    box-shadow:0 1px 6px rgba(0,0,0,0.10);
-    font-size:12px;
-    line-height:1.7;
-  }
-  .swatch{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:7px;vertical-align:middle;}
-  .swatch.dep{background:var(--accent);opacity:.5;border:2px solid var(--accent);}
-  .swatch.mun{background:#2e5f4e;opacity:.55;border:2px solid #2e5f4e;}
 
   .leaflet-popup-content-wrapper{border-radius:4px;}
   .popup-title{font-weight:700;font-size:13.5px;margin-bottom:2px;color:var(--ink);}
@@ -56,14 +34,6 @@
     pointer-events:none;
   }
 
-  .station-dot{
-    width:10px;height:10px;
-    background:#c1522b;
-    border:2px solid #ffffff;
-    border-radius:50%;
-    box-shadow:0 0 0 1px rgba(0,0,0,0.25);
-    cursor:pointer;
-  }
   .station-label{
     font-size:10.5px !important;
     font-weight:600;
@@ -74,22 +44,22 @@
     padding:1px 6px !important;
   }
   .station-label::before{ border-right-color:#d8d2c4 !important; }
+
+  .eds-cluster{
+    background:rgba(0,149,58,0.85);
+    color:#fff;
+    border:2px solid #fff;
+    border-radius:50%;
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:12.5px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.25);
+  }
 </style>
 </head>
 <body>
 <div id="app">
   <div id="map"></div>
-
-  <div id="header">
-    <h1>EDS Norte de Santander</h1>
-    <p>Límites reales del departamento y de los 22 municipios donde hay estaciones de servicio registradas (fuente: cartografía DANE). Acércate con el zoom a un municipio para ver sus 128 estaciones como puntos; pasa el mouse o toca uno para ver el nombre.</p>
-  </div>
-
-  <div id="legend">
-    <div><span class="swatch dep"></span>Norte de Santander</div>
-    <div><span class="swatch mun"></span>Municipio con estaciones de servicio</div>
-    <div><span class="swatch" style="background:#c1522b;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c1522b;"></span>Estación de servicio</div>
-  </div>
 </div>
 
 <script>
@@ -111,9 +81,9 @@
   // ---------- Perímetro real del departamento ----------
   const deptoLayer = L.geoJSON(deptoGeoJSON, {
     style: {
-      color: '#c1522b',
+      color: '#00953A',
       weight: 2,
-      fillColor: '#c1522b',
+      fillColor: '#00953A',
       fillOpacity: 0.03,
       dashArray: '5 4'
     }
@@ -124,9 +94,9 @@
   // ---------- Perímetros reales de los municipios ----------
   const muniLayer = L.geoJSON(municipiosGeoJSON, {
     style: {
-      color: '#2e5f4e',
+      color: '#3FAE29',
       weight: 1.3,
-      fillColor: '#2e5f4e',
+      fillColor: '#3FAE29',
       fillOpacity: 0.10
     },
     onEachFeature: function (feature, layer) {
@@ -152,7 +122,7 @@
   L.marker([9.05, -73.05], {
     icon: L.divIcon({
       className: '',
-      html: `<div class="muni-label" style="transform:translate(-50%,-50%);font-size:12.5px;color:#c1522b;">NORTE DE SANTANDER</div>`,
+      html: `<div class="muni-label" style="transform:translate(-50%,-50%);font-size:12.5px;color:#00953A;">NORTE DE SANTANDER</div>`,
       iconSize: [0, 0]
     }),
     interactive: false
@@ -194,21 +164,32 @@
     }
   });
 
-  const capaEstaciones = L.layerGroup();
+  const capaEstaciones = L.markerClusterGroup({
+    maxClusterRadius: 50,
+    iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
+      const size = count < 10 ? 34 : count < 30 ? 42 : 50;
+      return L.divIcon({
+        html: `<div class="eds-cluster">${count}</div>`,
+        className: '',
+        iconSize: [size, size]
+      });
+    }
+  });
+
+  const pinIcon = L.icon({
+    iconUrl: '../Imagenes/Pin_Ubicacion.png',
+    iconSize: [34, 34],
+    iconAnchor: [17, 34],
+    popupAnchor: [0, -30]
+  });
 
   edsData.forEach(e => {
-    const marker = L.marker([e._lat, e._lon], {
-      icon: L.divIcon({
-        className: '',
-        html: `<div class="station-dot"></div>`,
-        iconSize: [9, 9],
-        iconAnchor: [5, 5]
-      })
-    });
+    const marker = L.marker([e._lat, e._lon], { icon: pinIcon });
 
     marker.bindTooltip(nombreCorto(e.cliente), {
       direction: 'top',
-      offset: [0, -6],
+      offset: [0, -30],
       className: 'station-label'
     });
 
@@ -223,20 +204,7 @@
     marker.addTo(capaEstaciones);
   });
 
-  // Los puntos de estaciones solo se muestran al acercar el zoom a un
-  // municipio (igual que los puntos de interés en Google Maps), para que
-  // la vista general del departamento se vea limpia y no sobrecargada.
-  const ZOOM_MIN_ESTACIONES = 11;
-
-  function actualizarVisibilidadEstaciones() {
-    if (map.getZoom() >= ZOOM_MIN_ESTACIONES) {
-      if (!map.hasLayer(capaEstaciones)) map.addLayer(capaEstaciones);
-    } else {
-      if (map.hasLayer(capaEstaciones)) map.removeLayer(capaEstaciones);
-    }
-  }
-  map.on('zoomend', actualizarVisibilidadEstaciones);
-  actualizarVisibilidadEstaciones();
+  map.addLayer(capaEstaciones);
 
   // ---------- Ajustar vista a los municipios con datos ----------
   map.fitBounds(muniLayer.getBounds(), { padding: [40, 40] });
