@@ -26,9 +26,9 @@
   .popup-sub{font-size:11.5px;color:#666;line-height:1.4;}
 
   .muni-label{
-    font-size:12px;
+    font-size:10.5px;
     font-weight:800;
-    letter-spacing:0.2px;
+    letter-spacing:0.1px;
     color:#00953A;
     text-shadow:0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff, 0 0 4px #fff;
     white-space:nowrap;
@@ -149,7 +149,13 @@
       fillOpacity: 0.10
     },
     onEachFeature: function (feature, layer) {
+      const NOMBRES_CORTOS_MUNI = {
+        'SAN JOSÉ DE CÚCUTA': 'CÚCUTA',
+        'VILLA DEL ROSARIO': 'V. DEL ROSARIO',
+        'RÍO DE ORO': 'RÍO DE ORO'
+      };
       const nombre = feature.properties.nombre_excel;
+      const nombreEtiqueta = NOMBRES_CORTOS_MUNI[nombre] || nombre;
       const n = conteoPorMunicipio[nombre] || 0;
 
       layer.bindPopup(
@@ -160,7 +166,7 @@
       L.marker(center, {
         icon: L.divIcon({
           className: '',
-          html: `<div class="muni-label" style="transform:translate(-50%,-50%);">${nombre}</div>`,
+          html: `<div class="muni-label" style="transform:translate(-50%,-50%);">${nombreEtiqueta}</div>`,
           iconSize: [0, 0]
         }),
         interactive: false
