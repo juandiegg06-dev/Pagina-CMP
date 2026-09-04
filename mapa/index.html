@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EDS Norte de Santander — Límites reales</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <style>
   :root{
     --ink:#1c2b24;
@@ -41,11 +44,68 @@
     padding:1px 6px !important;
   }
   .station-label::before{ border-right-color:#d8d2c4 !important; }
+
+  .pin-aproximado{ filter: grayscale(35%) sepia(60%) hue-rotate(-20deg) saturate(300%); opacity:0.85; }
+
+  .marker-cluster-custom{
+    background: rgba(0,149,58,0.75);
+    border-radius:50%;
+  }
+  .marker-cluster-custom div{
+    background: rgba(0,149,58,0.9);
+    color:#fff;
+    font-weight:700;
+    font-size:12px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  #buscador{
+    position:absolute;top:12px;left:12px;z-index:1000;
+    background:var(--panel);
+    border-radius:6px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    padding:6px 10px;
+    width:220px;
+  }
+  #buscador input{
+    width:100%;border:none;outline:none;font-size:13px;
+    padding:4px 2px;font-family:inherit;color:var(--ink);
+  }
+  #buscador-resultado{font-size:11px;color:#777;padding:2px 2px 0;}
+
+  #leyenda{
+    position:absolute;bottom:16px;right:12px;z-index:1000;
+    background:var(--panel);
+    border-radius:6px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    padding:10px 12px;
+    font-size:11.5px;
+    line-height:1.7;
+  }
+  #leyenda .titulo{font-weight:700;font-size:12px;margin-bottom:4px;}
+  #leyenda .fila{display:flex;align-items:center;gap:6px;}
+  #leyenda .muestra{width:14px;height:14px;flex:0 0 auto;}
+  #leyenda .linea-depto{border-top:2px dashed #00953A;width:14px;}
+  #leyenda .linea-muni{background:#3FAE29;opacity:0.4;border:1px solid #3FAE29;}
+  #leyenda img{width:16px;height:16px;}
+  #leyenda .aprox-muestra{filter: grayscale(35%) sepia(60%) hue-rotate(-20deg) saturate(300%);}
 </style>
 </head>
 <body>
 <div id="app">
   <div id="map"></div>
+  <div id="buscador">
+    <input type="text" id="buscador-input" placeholder="Buscar estación o municipio…" autocomplete="off">
+    <div id="buscador-resultado"></div>
+  </div>
+  <div id="leyenda">
+    <div class="titulo">Leyenda</div>
+    <div class="fila"><span class="muestra linea-depto"></span> Límite departamental</div>
+    <div class="fila"><span class="muestra linea-muni"></span> Límite municipal</div>
+    <div class="fila"><img src="../Imagenes/Pin_Ubicacion.png"> Ubicación exacta</div>
+    <div class="fila"><img class="aprox-muestra" src="../Imagenes/Pin_Ubicacion.png"> Ubicación aproximada</div>
+  </div>
 </div>
 
 <script>
@@ -150,7 +210,19 @@
     }
   });
 
-  const capaEstaciones = L.layerGroup();
+  const capaEstaciones = L.markerClusterGroup({
+    maxClusterRadius: 45,
+    spiderfyOnMaxZoom: true,
+    iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
+      const size = count < 10 ? 32 : count < 25 ? 40 : 48;
+      return L.divIcon({
+        html: `<div style="width:${size}px;height:${size}px;">${count}</div>`,
+        className: 'marker-cluster-custom',
+        iconSize: [size, size]
+      });
+    }
+  });
 
   const pinIcon = L.icon({
     iconUrl: '../Imagenes/Pin_Ubicacion.png',
@@ -159,8 +231,16 @@
     popupAnchor: [0, -30]
   });
 
+  const pinIconAprox = L.icon({
+    iconUrl: '../Imagenes/Pin_Ubicacion.png',
+    iconSize: [34, 34],
+    iconAnchor: [17, 34],
+    popupAnchor: [0, -30],
+    className: 'pin-aproximado'
+  });
+
   edsData.forEach(e => {
-    const marker = L.marker([e._lat, e._lon], { icon: pinIcon });
+    const marker = L.marker([e._lat, e._lon], { icon: e._aproximado ? pinIconAprox : pinIcon });
 
     marker.bindTooltip(nombreCorto(e.cliente), {
       direction: 'top',
@@ -176,10 +256,37 @@
       `<div class="popup-title">${e.cliente}</div><div class="popup-sub">${e.municipio}<br>${e.direccion}${notaAprox}</div>`
     );
 
+    e._marker = marker;
     marker.addTo(capaEstaciones);
   });
 
   map.addLayer(capaEstaciones);
+
+  // ---------- Buscador de estaciones / municipios ----------
+  const buscadorInput = document.getElementById('buscador-input');
+  const buscadorResultado = document.getElementById('buscador-resultado');
+
+  buscadorInput.addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    capaEstaciones.clearLayers();
+
+    if (q === '') {
+      edsData.forEach(e => capaEstaciones.addLayer(e._marker));
+      buscadorResultado.textContent = '';
+      return;
+    }
+
+    const coincidencias = edsData.filter(e =>
+      e.cliente.toLowerCase().includes(q) || e.municipio.toLowerCase().includes(q)
+    );
+    coincidencias.forEach(e => capaEstaciones.addLayer(e._marker));
+    buscadorResultado.textContent = `${coincidencias.length} resultado(s)`;
+
+    if (coincidencias.length > 0) {
+      const bounds = L.latLngBounds(coincidencias.map(e => [e._lat, e._lon]));
+      map.fitBounds(bounds, { padding: [60, 60], maxZoom: 13 });
+    }
+  });
 
   // ---------- Ajustar vista a los municipios con datos ----------
   map.fitBounds(muniLayer.getBounds(), { padding: [40, 40] });
