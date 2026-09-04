@@ -141,6 +141,8 @@
   deptoLayer.bindPopup('<div class="popup-title">Norte de Santander</div><div class="popup-sub">Perímetro oficial del departamento</div>');
 
   // ---------- Perímetros reales de los municipios ----------
+  const muniLabelMarkers = [];
+
   const muniLayer = L.geoJSON(municipiosGeoJSON, {
     style: {
       color: '#3FAE29',
@@ -163,14 +165,16 @@
       );
 
       const center = layer.getBounds().getCenter();
-      L.marker(center, {
+      const muniMarker = L.marker(center, {
         icon: L.divIcon({
           className: '',
           html: `<div class="muni-label" style="transform:translate(-50%,-50%);">${nombreEtiqueta}</div>`,
           iconSize: [0, 0]
         }),
-        interactive: false
+        interactive: false,
+        opacity: 0
       }).addTo(map);
+      muniLabelMarkers.push(muniMarker);
     }
   }).addTo(map);
 
@@ -299,6 +303,15 @@
 
   // ---------- Ajustar vista a los municipios con datos ----------
   map.fitBounds(muniLayer.getBounds(), { padding: [40, 40] });
+
+  // ---------- Mostrar nombres de municipio solo al hacer zoom (evita saturar la vista general) ----------
+  const ZOOM_MIN_LABELS = 9;
+  function actualizarVisibilidadLabels() {
+    const visible = map.getZoom() >= ZOOM_MIN_LABELS;
+    muniLabelMarkers.forEach(m => m.setOpacity(visible ? 1 : 0));
+  }
+  map.on('zoomend', actualizarVisibilidadLabels);
+  actualizarVisibilidadLabels();
 </script>
 </body>
 </html>
