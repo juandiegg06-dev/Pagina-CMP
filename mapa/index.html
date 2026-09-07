@@ -37,6 +37,14 @@
   .popup-title{font-weight:700;font-size:13.5px;margin-bottom:2px;color:var(--verde2);display:flex;align-items:center;gap:5px;}
   .popup-title::before{ content:"⛽"; font-size:13px; }
   .popup-sub{font-size:11.5px;color:#666;line-height:1.4;}
+  .popup-acciones{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+  .btn-popup{
+    font-size:10.5px;font-weight:600;
+    border:1px solid var(--verde2);color:var(--verde2);
+    background:#fff;border-radius:4px;padding:3px 7px;
+    cursor:pointer;text-decoration:none;
+  }
+  .btn-popup:hover{ background:var(--verde2);color:#fff; }
 
   .muni-label{
     font-size:10.5px;
@@ -72,6 +80,32 @@
     color:#fff !important;
   }
 
+  .dark-mode #map .leaflet-tile-pane{
+    filter: invert(90%) hue-rotate(180deg) brightness(0.95) contrast(90%);
+  }
+  .dark-mode #buscador,
+  .dark-mode #leyenda{
+    background:rgba(30,30,30,0.75);
+    color:#f0f0f0;
+  }
+  .dark-mode #buscador input{ color:#f0f0f0; }
+  .dark-mode #buscador input::placeholder{ color:#aaa; }
+  .dark-mode .resultado-item .r-nombre{ color:#f0f0f0; }
+  .dark-mode #leyenda .titulo{ color:var(--lima2); }
+
+  .btn-modo-oscuro{
+    background:rgba(255,255,255,0.9);
+    border:2px solid var(--verde2);
+    color:var(--verde2);
+    font-weight:700;
+    font-size:12px;
+    border-radius:6px;
+    padding:6px 10px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  }
+  .btn-modo-oscuro:hover{ background:var(--verde2); color:#fff; }
+
   .btn-ver-todo{
     background:rgba(255,255,255,0.9);
     border:2px solid var(--verde2);
@@ -95,7 +129,7 @@
     z-index:1000 !important;
   }
 
-  .marker-cluster-custom{ border-radius:50%; }
+  .marker-cluster-custom{ border-radius:50%; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35)); }
   .cluster-chico{ background: rgba(63,174,41,0.75); }
   .cluster-chico div{ background: var(--verde1); }
   .cluster-medio{ background: rgba(0,149,58,0.75); }
@@ -108,7 +142,7 @@
     font-size:12px;
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    border:2px solid #fff;
+    border:3px solid #fff;
   }
 
   #buscador{
@@ -128,6 +162,15 @@
   }
   #buscador input:focus{ box-shadow:inset 0 -2px 0 var(--lima2); }
   #buscador-resultado{font-size:11px;color:#777;padding:2px 2px 0;}
+  #buscador-total{font-size:10.5px;color:var(--verde2);font-weight:700;padding:0 2px 4px;border-bottom:1px solid rgba(0,149,58,0.2);margin-bottom:4px;}
+  #buscador-lista{max-height:220px;overflow-y:auto;}
+  .resultado-item{
+    font-size:12px;padding:5px 4px;border-radius:4px;cursor:pointer;
+    display:flex;flex-direction:column;gap:1px;
+  }
+  .resultado-item:hover{ background:rgba(148,213,0,0.25); }
+  .resultado-item .r-nombre{font-weight:600;color:var(--ink);}
+  .resultado-item .r-muni{font-size:10.5px;color:#777;}
 
   #leyenda{
     position:absolute;bottom:16px;right:12px;z-index:1000;
@@ -154,8 +197,10 @@
 <div id="app">
   <div id="map"></div>
   <div id="buscador">
+    <div id="buscador-total"></div>
     <input type="text" id="buscador-input" placeholder="Buscar estación o municipio…" autocomplete="off">
     <div id="buscador-resultado"></div>
+    <div id="buscador-lista"></div>
   </div>
   <div id="leyenda">
     <div class="titulo">Leyenda</div>
@@ -307,21 +352,25 @@
     }
   });
 
-  const pinIcon = L.icon({
-    iconUrl: '../Imagenes/Pin_Ubicacion.png',
-    iconSize: [34, 34],
-    iconAnchor: [17, 34],
-    popupAnchor: [0, -30],
-    className: 'pin-estacion'
-  });
+  function crearPinIcon(size, aprox) {
+    return L.icon({
+      iconUrl: '../Imagenes/Pin_Ubicacion.png',
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size],
+      popupAnchor: [0, -size + 4],
+      className: aprox ? 'pin-estacion pin-aproximado' : 'pin-estacion'
+    });
+  }
 
-  const pinIconAprox = L.icon({
-    iconUrl: '../Imagenes/Pin_Ubicacion.png',
-    iconSize: [34, 34],
-    iconAnchor: [17, 34],
-    popupAnchor: [0, -30],
-    className: 'pin-estacion pin-aproximado'
-  });
+  function tamanoPinPorZoom(zoom) {
+    if (zoom >= 14) return 46;
+    if (zoom >= 12) return 38;
+    if (zoom >= 9) return 30;
+    return 22;
+  }
+
+  let pinIcon = crearPinIcon(tamanoPinPorZoom(map.getZoom()), false);
+  let pinIconAprox = crearPinIcon(tamanoPinPorZoom(map.getZoom()), true);
 
   edsData.forEach(e => {
     const marker = L.marker([e._lat, e._lon], { icon: e._aproximado ? pinIconAprox : pinIcon });
@@ -336,8 +385,11 @@
       ? '<br><em>Ubicación aproximada (varias estaciones comparten la coordenada de la cabecera municipal en el Excel)</em>'
       : '';
 
+    const mapsUrl = `https://www.google.com/maps?q=${e._lat},${e._lon}`;
     marker.bindPopup(
-      `<div class="popup-title">${e.cliente}</div><div class="popup-sub">${e.municipio}<br>${e.direccion}${notaAprox}</div>`
+      `<div class="popup-title">${e.cliente}</div><div class="popup-sub">${e.municipio}<br>${e.direccion}${notaAprox}</div>` +
+      `<div class="popup-acciones"><a href="${mapsUrl}" target="_blank" rel="noopener" class="btn-popup">Ver en Google Maps</a>` +
+      `<button type="button" class="btn-popup btn-copiar" data-lat="${e._lat}" data-lon="${e._lon}">Copiar coordenadas</button></div>`
     );
 
     e._marker = marker;
@@ -346,9 +398,40 @@
 
   map.addLayer(capaEstaciones);
 
+  // ---------- Copiar coordenadas desde el popup ----------
+  document.getElementById('map').addEventListener('click', function (ev) {
+    const btn = ev.target.closest('.btn-copiar');
+    if (!btn) return;
+    const texto = `${btn.dataset.lat}, ${btn.dataset.lon}`;
+    navigator.clipboard.writeText(texto).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  });
+
   // ---------- Buscador de estaciones / municipios ----------
   const buscadorInput = document.getElementById('buscador-input');
   const buscadorResultado = document.getElementById('buscador-resultado');
+  const buscadorLista = document.getElementById('buscador-lista');
+  const buscadorTotal = document.getElementById('buscador-total');
+
+  const totalMunicipios = Object.keys(conteoPorMunicipio).length;
+  buscadorTotal.textContent = `${edsData.length} estaciones en ${totalMunicipios} municipios`;
+
+  function renderLista(items) {
+    buscadorLista.innerHTML = '';
+    items.slice(0, 8).forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'resultado-item';
+      div.innerHTML = `<span class="r-nombre">${e.cliente}</span><span class="r-muni">${e.municipio}</span>`;
+      div.addEventListener('click', () => {
+        map.flyTo([e._lat, e._lon], 14, { duration: 0.9 });
+        setTimeout(() => e._marker.openPopup(), 900);
+      });
+      buscadorLista.appendChild(div);
+    });
+  }
 
   buscadorInput.addEventListener('input', function () {
     const q = this.value.trim().toLowerCase();
@@ -357,6 +440,7 @@
     if (q === '') {
       edsData.forEach(e => capaEstaciones.addLayer(e._marker));
       buscadorResultado.textContent = '';
+      buscadorLista.innerHTML = '';
       return;
     }
 
@@ -365,6 +449,7 @@
     );
     coincidencias.forEach(e => capaEstaciones.addLayer(e._marker));
     buscadorResultado.textContent = `${coincidencias.length} resultado(s)`;
+    renderLista(coincidencias);
 
     if (coincidencias.length > 0) {
       const bounds = L.latLngBounds(coincidencias.map(e => [e._lat, e._lon]));
@@ -397,6 +482,23 @@
   });
   map.addControl(new BotonVerTodo());
 
+  // ---------- Modo oscuro ----------
+  const BotonModoOscuro = L.Control.extend({
+    options: { position: 'topright' },
+    onAdd: function () {
+      const btn = L.DomUtil.create('button', 'btn-modo-oscuro');
+      btn.innerHTML = '🌙 Modo oscuro';
+      btn.type = 'button';
+      L.DomEvent.disableClickPropagation(btn);
+      btn.addEventListener('click', function () {
+        const activo = document.getElementById('app').classList.toggle('dark-mode');
+        btn.innerHTML = activo ? '☀️ Modo claro' : '🌙 Modo oscuro';
+      });
+      return btn;
+    }
+  });
+  map.addControl(new BotonModoOscuro());
+
   // ---------- Mostrar nombres de municipio solo al hacer zoom (evita saturar la vista general) ----------
   const ZOOM_MIN_LABELS = 9;
   function actualizarVisibilidadLabels() {
@@ -405,6 +507,19 @@
   }
   map.on('zoomend', actualizarVisibilidadLabels);
   actualizarVisibilidadLabels();
+
+  // ---------- Tamaño de pin dinámico según zoom ----------
+  let tamanoPinActual = tamanoPinPorZoom(map.getZoom());
+  map.on('zoomend', function () {
+    const nuevoTamano = tamanoPinPorZoom(map.getZoom());
+    if (nuevoTamano === tamanoPinActual) return;
+    tamanoPinActual = nuevoTamano;
+    pinIcon = crearPinIcon(nuevoTamano, false);
+    pinIconAprox = crearPinIcon(nuevoTamano, true);
+    edsData.forEach(e => {
+      e._marker.setIcon(e._aproximado ? pinIconAprox : pinIcon);
+    });
+  });
 </script>
 </body>
 </html>
