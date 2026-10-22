@@ -1004,7 +1004,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 
 .blog-card {
   background-color: white;
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid var(--border-color);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -1014,9 +1014,9 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(0, 149, 58, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 149, 58, 0.16);
+  border-color: rgba(0, 149, 58, 0.35);
 }
 
 .blog-card-image-wrap {
@@ -1025,19 +1025,29 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   overflow: hidden;
   position: relative;
   background-color: #d4d4d4;
+  border-bottom: 4px solid var(--lima1);
+}
+
+.blog-card-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 55%);
+  pointer-events: none;
 }
 
 .blog-card-image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   border-radius: 0;
   margin: 0;
   transition: var(--transition-smooth);
 }
 
 .blog-card:hover .blog-card-image-wrap img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .blog-card-category {
@@ -1046,16 +1056,18 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   left: 1rem;
   background-color: var(--primary);
   color: white;
-  padding: 0.35rem 0.8rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 50px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 5;
 }
 
 .blog-card-body {
-  padding: 1.5rem;
+  padding: 1.5rem 1.6rem 1.7rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -1075,8 +1087,13 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   gap: 0.3rem;
 }
 
+.blog-card-meta i {
+  color: var(--primary);
+}
+
 .blog-card-body h3 {
-  font-size: 1.25rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
   line-height: 1.3;
@@ -1107,14 +1124,19 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focu
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  padding: 0.45rem 1.1rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
 }
 
 .blog-card-more-btn:hover {
-  color: var(--primary-hover);
-  padding-left: 4px;
+  background-color: var(--primary);
+  color: white;
+  gap: 0.7rem;
 }
 
 /* Pagination container */
