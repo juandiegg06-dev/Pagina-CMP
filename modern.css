@@ -1816,3 +1816,65 @@ footer.site-footer {
   :root { --container-max: 2500px; }
   html { font-size: 135%; }
 }
+
+/* ==========================================================================
+   Entradas de noticias: se ocultan los elementos heredados de WordPress que
+   no funcionan en el sitio estático (avatar de autor, flechas anterior/siguiente,
+   meta duplicada, enlace a comentarios y miniaturas que nunca cargan)
+   ========================================================================== */
+.author-info.entry-author,
+.post-navigation .nav-links,
+.post-meta.wf-mobile-collapsed,
+.comment-link,
+.single-related-posts .mini-post-img,
+.recent-posts .mini-post-img {
+  display: none !important;
+}
+
+/* Listas de "Related Posts" / "Recent posts" sin imagen: texto limpio y alineado */
+.single-related-posts,
+.widget_presscore-blog-posts {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.single-related-posts h3,
+.widget_presscore-blog-posts .widget-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 1rem;
+}
+
+.single-related-posts .items-grid,
+.recent-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.single-related-posts .related-item article,
+.recent-posts li article {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--lima2);
+}
+
+.single-related-posts .post-content a,
+.recent-posts .post-content a {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.single-related-posts time,
+.recent-posts time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
